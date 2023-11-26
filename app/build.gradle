@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.eataly'
+    namespace 'com.example.restauratio'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.eataly"
+        applicationId "com.example.restauratio"
         minSdk 24
         targetSdk 33
         versionCode 1

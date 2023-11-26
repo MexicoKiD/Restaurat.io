@@ -1,4 +1,4 @@
-package com.example.eataly
+package com.example.restauratio
 
 import org.junit.Test
 
