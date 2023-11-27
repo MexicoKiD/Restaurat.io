@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Restaurat.io</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="restaurat_io_text">Restaurat.io</string>
+    <string name="login_text">Login</string>
+    <string name="password_text">Hasło</string>
+    <string name="email_text">Email</string>
+    <string name="login_button_text">Zaloguj się</string>
+    <string name="text_1">Nie masz jeszcze konta?</string>
+    <string name="register_text">Zarejestruj się</string>
+    <string name="text_2">Jednak nie chcesz?</string>
+    <string name="text_3">Zamów bez logowania</string>
+    <string name="repeat_password_text">Powtórz hasło</string>
+    <string name="text_4">Masz już konto?</string>
+
 </resources>
