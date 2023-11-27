@@ -1,0 +1,22 @@
+<resources>
+    <dimen name="fragment_horizontal_margin_64">64dp</dimen>
+    <dimen name="fragment_vertical_margin_64">64dp</dimen>
+
+    <dimen name="fragment_horizontal_margin_32">32dp</dimen>
+    <dimen name="fragment_vertical_margin_32">32dp</dimen>
+
+    <dimen name="fragment_horizontal_margin_24">24dp</dimen>
+    <dimen name="fragment_vertical_margin_24">24dp</dimen>
+
+    <dimen name="fragment_horizontal_margin_16">16dp</dimen>
+    <dimen name="fragment_vertical_margin_16">16dp</dimen>
+
+    <dimen name="fragment_horizontal_margin_8">8dp</dimen>
+    <dimen name="fragment_vertical_margin_8">8dp</dimen>
+
+    <dimen name="fragment_horizontal_margin_4">4dp</dimen>
+    <dimen name="fragment_vertical_margin_4">4dp</dimen>
+
+    <dimen name="logo_text_size">22sp</dimen>
+    <dimen name="text_size">16sp</dimen>
+</resources>
