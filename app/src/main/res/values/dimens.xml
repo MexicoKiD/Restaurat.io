@@ -1,4 +1,6 @@
 <resources>
+
+// margins
     <dimen name="fragment_horizontal_margin_64">64dp</dimen>
     <dimen name="fragment_vertical_margin_64">64dp</dimen>
 
@@ -17,6 +19,33 @@
     <dimen name="fragment_horizontal_margin_4">4dp</dimen>
     <dimen name="fragment_vertical_margin_4">4dp</dimen>
 
+// layout size
+    <dimen name="layout_width_128">128dp</dimen>
+    <dimen name="layout_height_128">128dp</dimen>
+
+    <dimen name="layout_width_64">64dp</dimen>
+    <dimen name="layout_height_64">64dp</dimen>
+
+    <dimen name="layout_width_48">48dp</dimen>
+    <dimen name="layout_height_48">48dp</dimen>
+
+    <dimen name="layout_width_32">32dp</dimen>
+    <dimen name="layout_height_32">32dp</dimen>
+
+    <dimen name="layout_width_24">24dp</dimen>
+    <dimen name="layout_height_24">24dp</dimen>
+
+    <dimen name="layout_width_16">16dp</dimen>
+    <dimen name="layout_height_16">16dp</dimen>
+
+    <dimen name="layout_width_8">8dp</dimen>
+    <dimen name="layout_height_8">8dp</dimen>
+
+    <dimen name="layout_width_4">4dp</dimen>
+    <dimen name="layout_height_4">4dp</dimen>
+
+// text size
     <dimen name="logo_text_size">22sp</dimen>
     <dimen name="text_size">16sp</dimen>
+
 </resources>

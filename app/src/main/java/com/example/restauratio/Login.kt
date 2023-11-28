@@ -12,20 +12,24 @@ class Login : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private val action = R.id.action_login_to_registration
+    private val actionLoginToRegistration = R.id.action_login_to_registration
+    private val actionLoginToMenu = R.id.action_login_to_menu
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        val view = binding.root
 
         binding.text3.setOnClickListener {
-            findNavController().navigate(action)
+            findNavController().navigate(actionLoginToRegistration)
         }
 
-        return view
+        binding.button.setOnClickListener {
+            findNavController().navigate(actionLoginToMenu)
+        }
+
+        return binding.root
     }
 
     override fun onDestroyView() {

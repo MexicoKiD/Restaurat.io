@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_login_to_registration"
             app:destination="@id/registration" />
+        <action
+            android:id="@+id/action_login_to_menu"
+            app:destination="@id/menu" />
     </fragment>
     <fragment
         android:id="@+id/registration"
@@ -24,4 +27,9 @@
             app:popUpTo="@id/registration"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/menu"
+        android:name="com.example.restauratio.Menu"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" />
 </navigation>

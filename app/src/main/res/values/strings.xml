@@ -12,5 +12,6 @@
     <string name="text_3">Zamów bez logowania</string>
     <string name="repeat_password_text">Powtórz hasło</string>
     <string name="text_4">Masz już konto?</string>
+    <string name="search_text">Szukaj…</string>
 
 </resources>
