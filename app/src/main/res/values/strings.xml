@@ -13,5 +13,8 @@
     <string name="repeat_password_text">Powtórz hasło</string>
     <string name="text_4">Masz już konto?</string>
     <string name="search_text">Szukaj…</string>
+    <string name="trolley_text">Koszyk</string>
+    <string name="account_text">Konto</string>
+    <string name="orders_text">Zamówienia</string>
 
 </resources>
