@@ -38,7 +38,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/hamburgerButton"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:contentDescription="@string/app_name"
@@ -54,7 +54,7 @@
                 android:layout_marginStart="@dimen/fragment_horizontal_margin_16"
                 android:contentDescription="@string/app_name"
                 app:layout_constraintBottom_toBottomOf="@+id/textInputLayout3"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/hamburgerButton"
                 app:layout_constraintTop_toTopOf="@+id/textInputLayout3"
                 app:srcCompat="@drawable/loupe_svgrepo_com_1" />
 
@@ -96,14 +96,16 @@
         android:id="@+id/frameLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
+        android:background="@color/background_color"
+        android:backgroundTint="@color/background_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
             <ImageView
                 android:id="@+id/imageView7"
@@ -179,5 +181,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        app:elevation="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout4"
+        app:layout_constraintVertical_bias="0.0">
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@drawable/drawer_frame"
+            app:headerLayout="@layout/nav_header"
+            app:itemTextColor="@color/text_color"
+            app:menu="@menu/side_menu" />
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
