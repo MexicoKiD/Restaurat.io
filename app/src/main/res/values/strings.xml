@@ -1,4 +1,5 @@
 <resources>
+    <string name="GOOGLE_MAPS_API_KEY">AIzaSyAw1PE48Gb1tA6MElk2p1IxPC5qfl2eBP0</string>
     <string name="app_name">Restaurat.io</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="restaurat_io_text">Restaurat.io</string>
@@ -16,5 +17,28 @@
     <string name="trolley_text">Koszyk</string>
     <string name="account_text">Konto</string>
     <string name="orders_text">Zamówienia</string>
+    <string name="about_us_text">O nas</string>
+    <string name="reservation_text">Zarezerwuj stolik</string>
+    <string name="rules_text">Regulamin</string>
+    <string name="privacy_policy_text">Polityka prywatności</string>
+    <string name="logout_text">Wyloguj się</string>
+    <string name="table_reservation_text">Rezerwacja stolika</string>
+    <string name="grade_text">5 / 5</string>
+    <string name="delivery_text">Dostawa</string>
+    <string name="personal_collection_text">Odbiór osobisty</string>
+    <string name="our_localization_text">Nasza lokalizacja</string>
+    <string name="opinions_text">Opinie</string>
+    <string name="adress">Święty Marcin 1, 61–806 Poznań</string>
+    <string name="phone_number">+48 123 456 789</string>
+    <string name="email">Restauratio@gmail.com</string>
+    <string name="open_hours_text">Godziny otwarcia</string>
+    <string name="monday">Poniedziałek</string>
+    <string name="Tuesday">Wtorek</string>
+    <string name="open_hours">10:00 – 22:00</string>
+    <string name="Wednesday">Środa</string>
+    <string name="Thursday">Czwartek</string>
+    <string name="Friday">Piątek</string>
+    <string name="Saturday">Sobota</string>
+    <string name="Sunday">Niedziela</string>
 
 </resources>

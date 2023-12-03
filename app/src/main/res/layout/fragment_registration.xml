@@ -23,10 +23,11 @@
         android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_bold"
+        android:fontFamily="@font/inter"
         android:text="@string/restaurat_io_text"
         android:textColor="@color/secondary_color"
         android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -140,10 +141,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/fragment_horizontal_margin_4"
-            android:fontFamily="@font/inter_bold"
+            android:fontFamily="@font/inter"
             android:text="@string/login_button_text"
             android:textColor="@color/text_color"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -169,10 +171,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/fragment_horizontal_margin_4"
-            android:fontFamily="@font/inter_bold"
+            android:fontFamily="@font/inter"
             android:text="@string/text_3"
             android:textColor="@color/text_color"
-            android:textSize="@dimen/text_size" />
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
     </LinearLayout>
 
 
