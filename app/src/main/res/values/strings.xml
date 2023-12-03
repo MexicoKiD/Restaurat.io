@@ -1,5 +1,5 @@
-<resources>
-    <string name="GOOGLE_MAPS_API_KEY">AIzaSyAw1PE48Gb1tA6MElk2p1IxPC5qfl2eBP0</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="GOOGLE_MAPS_API_KEY" tools:ignore="Typos">AIzaSyAw1PE48Gb1tA6MElk2p1IxPC5qfl2eBP0</string>
     <string name="app_name">Restaurat.io</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="restaurat_io_text">Restaurat.io</string>
@@ -28,7 +28,7 @@
     <string name="personal_collection_text">Odbiór osobisty</string>
     <string name="our_localization_text">Nasza lokalizacja</string>
     <string name="opinions_text">Opinie</string>
-    <string name="adress">Święty Marcin 1, 61–806 Poznań</string>
+    <string name="address">Święty Marcin 1, 61–806 Poznań</string>
     <string name="phone_number">+48 123 456 789</string>
     <string name="email">Restauratio@gmail.com</string>
     <string name="open_hours_text">Godziny otwarcia</string>
@@ -40,5 +40,39 @@
     <string name="Friday">Piątek</string>
     <string name="Saturday">Sobota</string>
     <string name="Sunday">Niedziela</string>
+    <string name="alerts_text">Powiadomienia</string>
+    <string name="nothing_here_text">Nic tutaj jeszcze nie ma…</string>
+    <string name="about_me_text">O mnie</string>
+    <string name="rate_us_text">Oceń nas</string>
+    <string name="delete_account_text">Usuń konto</string>
+    <string name="sample_address">Jan\nJan.Kowalski@gmial.com\n+48 123456789</string>
+    <string name="ordering_details_text">Dane zamawiającego</string>
+    <string name="delivery_address_text" tools:ignore="Typos">Adres dostawy</string>
+    <string name="fill_text">Uzupełnij…</string>
+    <string name="edit_text">Edytuj</string>
+    <string name="add_delivery_address_text">Dodawanie adresu dostawy</string>
+    <string name="name_text">Imię</string>
+    <string name="phone_number_text">Numer telefonu</string>
+    <string name="street_text">Ulica i numer budynku</string>
+    <string name="postal_code_text">Kod pocztowy i miasto</string>
+    <string name="house_number_text">Numer mieszkania (opcjonalnie)</string>
+    <string name="save_text">Zapisz</string>
+    <string name="yes">TAK</string>
+    <string name="no">NIE</string>
+    <string name="message">Message</string>
+    <string name="your_order_list_text">Lista Twoich zamówień</string>
+    <string name="order_text">Zamówienie</string>
+    <string name="date_text">Złożono</string>
+    <string name="status_text">Status</string>
+    <string name="amout_text">Kwota</string>
+    <string name="number_text">#1234</string>
+    <string name="date">24.11.2023, 20:01</string>
+    <string name="status">Dostarczone</string>
+    <string name="amout">80,000 zł</string>
+    <string name="pizza">Pizza hawajska</string>
+    <string name="count">2</string>
+    <string name="ordering_party_details">Dane zamawiającego:</string>
+    <string name="name">Jan</string>
+    <string name="sample_email">Jan.Kowalski@gmail.com</string>
 
 </resources>

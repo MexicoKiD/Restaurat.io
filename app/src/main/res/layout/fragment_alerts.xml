@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="@color/ic_launcher_background"
     tools:context=".PrivacyPolicy">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter"
-        android:text="@string/privacy_policy_text"
+        android:text="@string/alerts_text"
         android:textColor="@color/text_color"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
@@ -32,18 +32,29 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/textView6"
+    <ImageView
+        android:id="@+id/imageView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/waiting_guy"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/inter"
-        android:text="@string/restaurat_io_text"
+        android:text="@string/nothing_here_text"
         android:textColor="@color/text_color"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

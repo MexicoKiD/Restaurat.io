@@ -112,6 +112,7 @@
         android:fontFamily="@font/inter"
         android:text="@string/register_text"
         android:textSize="@dimen/text_size"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

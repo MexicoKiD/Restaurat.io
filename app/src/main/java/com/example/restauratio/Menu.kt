@@ -24,6 +24,9 @@ class Menu : Fragment() {
     private val actionMenuToRules = R.id.action_menu_to_rulesView
     private val actionMenuToPrivacyPolicy = R.id.action_menu_to_privacyPolicy
     private val actionLogout = R.id.action_menu_pop
+    private val actionMenuToAlerts = R.id.action_menu_to_alerts
+    private val actionMenuToProfile = R.id.action_menu_to_profile
+    private val actionMenuToOrders = R.id.action_menu_to_orders
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,14 +37,6 @@ class Menu : Fragment() {
         val drawerLayout = binding.drawerLayout
         val mainView: View = binding.root
 
-        fun onHamburgerButtonClick() {
-            if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                drawerLayout.openDrawer(GravityCompat.START)
-            } else {
-                drawerLayout.closeDrawer(GravityCompat.START)
-            }
-        }
-
         mainView.setOnClickListener {
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 drawerLayout.closeDrawer(GravityCompat.START)
@@ -51,7 +46,15 @@ class Menu : Fragment() {
         binding.hamburgerButton.setOnClickListener {
             onHamburgerButtonClick()
         }
-
+        binding.imageView6.setOnClickListener{
+            findNavController().navigate(actionMenuToAlerts)
+        }
+        binding.imageView2.setOnClickListener{
+            findNavController().navigate(actionMenuToProfile)
+        }
+        binding.imageView7.setOnClickListener{
+            findNavController().navigate(actionMenuToOrders)
+        }
 
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -84,12 +87,18 @@ class Menu : Fragment() {
             }
         }
 
-        //setHasOptionsMenu(true)
-
-
         return binding.root
     }
 
+    private fun onHamburgerButtonClick() {
+        val drawerLayout = binding.drawerLayout
+
+        if (!drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.openDrawer(GravityCompat.START)
+        } else {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -48,6 +48,15 @@
         <action
             android:id="@+id/action_menu_to_aboutUs"
             app:destination="@id/aboutUs" />
+        <action
+            android:id="@+id/action_menu_to_alerts"
+            app:destination="@id/alerts" />
+        <action
+            android:id="@+id/action_menu_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_menu_to_orders"
+            app:destination="@id/orders" />
     </fragment>
     <fragment
         android:id="@+id/aboutUs"
@@ -124,5 +133,59 @@
             app:popUpTo="@id/aboutUsOpinions"
             app:popUpToInclusive="true"
             app:destination="@id/aboutUs" />
+    </fragment>
+    <fragment
+        android:id="@+id/alerts"
+        android:name="com.example.restauratio.Alerts"
+        android:label="Alerts" >
+        <action
+            android:id="@+id/action_alerts_pop"
+            app:popUpTo="@id/alerts"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.restauratio.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_pop"
+            app:popUpTo="@id/profile"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profile_to_aboutMe"
+            app:destination="@id/aboutMe" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutMe"
+        android:name="com.example.restauratio.AboutMe"
+        android:label="AboutMe" >
+        <action
+            android:id="@+id/action_aboutMe_pop"
+            app:popUpTo="@id/aboutMe"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_aboutMe_to_editDeliveryAddress"
+            app:destination="@id/editDeliveryAddress" />
+    </fragment>
+    <fragment
+        android:id="@+id/editDeliveryAddress"
+        android:name="com.example.restauratio.EditDeliveryAddress"
+        android:label="fragment_edit_address"
+        tools:layout="@layout/fragment_edit_address" >
+        <action
+            android:id="@+id/action_editDeliveryAddress_pop"
+            app:popUpTo="@id/editDeliveryAddress"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/orders"
+        android:name="com.example.restauratio.Orders"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" >
+        <action
+            android:id="@+id/action_orders_pop"
+            app:popUpTo="@id/orders"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

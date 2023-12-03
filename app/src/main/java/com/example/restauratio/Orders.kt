@@ -6,22 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.restauratio.databinding.FragmentReservationBinding
+import com.example.restauratio.databinding.FragmentAlertsBinding
+import com.example.restauratio.databinding.FragmentOrdersBinding
 
-class Reservation : Fragment() {
+class Orders : Fragment() {
 
-    private var _binding: FragmentReservationBinding? = null
+    private var _binding: FragmentOrdersBinding? = null
     private val binding get() = _binding!!
-    private val action = R.id.action_reservationView_pop
+    private val actionOrderToPop = R.id.action_orders_pop
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentReservationBinding.inflate(inflater, container, false)
+        _binding = FragmentOrdersBinding.inflate(inflater, container, false)
 
         binding.imageView4.setOnClickListener{
-            findNavController().navigate(action)
+            findNavController().navigate(actionOrderToPop)
         }
 
         return binding.root
