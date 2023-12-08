@@ -74,5 +74,10 @@
     <string name="ordering_party_details">Dane zamawiającego:</string>
     <string name="name">Jan</string>
     <string name="sample_email">Jan.Kowalski@gmail.com</string>
+    <string name="adres">Adres</string>
+    <string name="miasto">Miasto</string>
+    <string name="kraj">Kraj</string>
+    <string name="numer_telefonu">Numer telefonu</string>
+    <string name="kod_pocztowy">Kod pocztowy</string>
 
 </resources>

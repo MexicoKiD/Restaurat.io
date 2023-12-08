@@ -6,44 +6,109 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    tools:context=".Registration">
+    tools:context=".register.RegistrationFragment">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="@dimen/layout_width_128"
-        android:layout_height="@dimen/layout_height_128"
-        android:layout_marginTop="@dimen/fragment_vertical_margin_32"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
-
-    <TextView
-        android:id="@+id/appName"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout9"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/inter"
-        android:text="@string/restaurat_io_text"
-        android:textColor="@color/secondary_color"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:layout_marginStart="@dimen/fragment_horizontal_margin_32"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/fragment_horizontal_margin_32"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout8">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/numer_telefonu"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:textColorHint="@color/text_hint_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fragment_horizontal_margin_32"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/fragment_horizontal_margin_32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout7">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/countryEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/kraj"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textColorHint="@color/text_hint_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fragment_horizontal_margin_32"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/fragment_horizontal_margin_32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/postalCodeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/kod_pocztowy"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textColorHint="@color/text_hint_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fragment_horizontal_margin_32"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/fragment_horizontal_margin_32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/miasto"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textColorHint="@color/text_hint_color" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/fragment_horizontal_margin_32"
-        android:layout_marginTop="@dimen/fragment_vertical_margin_32"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/fragment_horizontal_margin_32"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appName">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/email_text"
@@ -57,7 +122,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/fragment_horizontal_margin_32"
-        android:layout_marginTop="@dimen/fragment_vertical_margin_16"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/fragment_horizontal_margin_32"
         app:endIconCheckable="true"
         app:endIconMode="password_toggle"
@@ -68,6 +133,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/password_text"
@@ -82,7 +148,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/fragment_horizontal_margin_32"
-        android:layout_marginTop="@dimen/fragment_vertical_margin_16"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/fragment_horizontal_margin_32"
         app:endIconCheckable="true"
         app:endIconMode="password_toggle"
@@ -93,6 +159,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordAgainEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/repeat_password_text"
@@ -101,12 +168,34 @@
             android:textColorHint="@color/text_hint_color" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/button"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/fragment_horizontal_margin_32"
-        android:layout_marginTop="@dimen/fragment_vertical_margin_32"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/fragment_horizontal_margin_32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/addressEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/adres"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textColorHint="@color/text_hint_color" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/fragment_horizontal_margin_32"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/fragment_horizontal_margin_32"
         android:backgroundTint="@color/secondary_color_light"
         android:fontFamily="@font/inter"
@@ -116,13 +205,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout9" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_vertical_margin_32"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,6 +239,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/fragment_vertical_margin_8"

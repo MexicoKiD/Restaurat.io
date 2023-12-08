@@ -67,7 +67,7 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.6.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
-    kapt "com.google.dagger:hilt-compiler:2.44"
+    kapt "com.google.dagger:hilt-android-compiler:2.44"
 
 
     //Navigation
