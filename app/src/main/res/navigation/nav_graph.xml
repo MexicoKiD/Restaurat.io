@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/menu"
-        android:name="com.example.restauratio.Menu"
+        android:name="com.example.restauratio.menu.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
         <action

@@ -2,6 +2,7 @@ package com.example.restauratio.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.restauratio.loginSession.SessionManager
 import com.example.restauratio.request.AuthService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +11,10 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val authService: AuthService) : ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val authService: AuthService,
+    private val sessionManager: SessionManager
+) : ViewModel() {
 
     fun login(email: String,
               password: String,
@@ -29,7 +33,13 @@ class LoginViewModel @Inject constructor(private val authService: AuthService) :
                 }
 
                 if (response.isSuccessful) {
-                    onSuccess.invoke()
+                    val token = response.body()?.token
+                    if (token != null) {
+                        sessionManager.saveAuthToken(token)
+                        onSuccess.invoke()
+                    } else {
+                        onError.invoke("Token not received")
+                    }
                 } else {
                     onError.invoke("Login failed")
                 }

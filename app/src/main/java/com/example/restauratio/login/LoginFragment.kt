@@ -10,11 +10,15 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.restauratio.R
 import com.example.restauratio.databinding.FragmentLoginBinding
+import com.example.restauratio.loginSession.SessionManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
+
+    @Inject
+    lateinit var sessionManager: SessionManager
 
     private val loginViewModel: LoginViewModel by viewModels()
 
@@ -46,9 +50,19 @@ class LoginFragment : Fragment() {
             loginViewModel.login(
                 email,
                 password,
-                { findNavController().navigate(actionLoginToMenu) },
+                { handleLoginSuccess() },
                 { showError() }
             )
+        }
+    }
+
+    private fun handleLoginSuccess() {
+        sessionManager.getAuthToken().observe(viewLifecycleOwner) { authToken ->
+            if (!authToken.isNullOrBlank()) {
+                findNavController().navigate(actionLoginToMenu)
+            } else {
+                showError()
+            }
         }
     }
 

@@ -1,24 +1,26 @@
-package com.example.restauratio
+package com.example.restauratio.menu
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toolbar
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.restauratio.R
 import com.example.restauratio.databinding.FragmentMenuBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class Menu : Fragment() {
+@AndroidEntryPoint
+class MenuFragment : Fragment() {
 
     private var _binding: FragmentMenuBinding? = null
     private val binding get() = _binding!!
+    private val menuViewModel: MenuViewModel by viewModels()
+    private val dishAdapter = DishAdapter()
+
     private val actionMenuToAboutUs = R.id.action_menu_to_aboutUs
     private val actionMenuToReservation = R.id.action_menu_to_reservationView
     private val actionMenuToRules = R.id.action_menu_to_rulesView
@@ -33,6 +35,9 @@ class Menu : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = dishAdapter
 
         val drawerLayout = binding.drawerLayout
         val mainView: View = binding.root
@@ -88,6 +93,15 @@ class Menu : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        menuViewModel.dishes.observe(viewLifecycleOwner) { dishes ->
+            dishAdapter.setDishes(dishes)
+        }
+        menuViewModel.loadDishes(categoryId = null, name = null)
     }
 
     private fun onHamburgerButtonClick() {
