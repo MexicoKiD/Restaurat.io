@@ -1,24 +1,33 @@
 package com.example.restauratio.menu
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.restauratio.R
+import com.example.restauratio.cart.CartViewModel
 import com.example.restauratio.databinding.MenuItemBinding
+import dagger.hilt.android.AndroidEntryPoint
 import de.hdodenhof.circleimageview.CircleImageView
 
-class DishAdapter : RecyclerView.Adapter<DishAdapter.DishViewHolder>() {
+class DishAdapter(
+    private val cartViewModel: CartViewModel
+) : RecyclerView.Adapter<DishAdapter.DishViewHolder>() {
 
     private var dishes: List<DishModel> = emptyList()
+    private var onItemClick: ((DishModel) -> Unit)? = null
 
     inner class DishViewHolder(binding: MenuItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val dishImage: CircleImageView = binding.imageView2
         val dishName: TextView = binding.textView2
         val dishPrice: TextView = binding.textView
         val addToCartButton: ImageView = binding.imageView8
+
+        init {
+            itemView.setOnClickListener {
+                onItemClick?.invoke(dishes[adapterPosition])
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishViewHolder {
@@ -38,8 +47,7 @@ class DishAdapter : RecyclerView.Adapter<DishAdapter.DishViewHolder>() {
 
 
         holder.addToCartButton.setOnClickListener {
-            // Tu dodaj kod obsługujący dodanie dania do koszyka
-            // Na przykład możesz wywołać funkcję w ViewModelu, która dodaje danie do koszyka.
+            cartViewModel.addToCart(dish)
         }
     }
 
@@ -50,5 +58,9 @@ class DishAdapter : RecyclerView.Adapter<DishAdapter.DishViewHolder>() {
     fun setDishes(newDishes: List<DishModel>) {
         dishes = newDishes
         notifyDataSetChanged()
+    }
+
+    fun setOnItemClickListener(listener: (DishModel) -> Unit) {
+        onItemClick = listener
     }
 }

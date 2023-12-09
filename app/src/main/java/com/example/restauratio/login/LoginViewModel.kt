@@ -16,6 +16,11 @@ class LoginViewModel @Inject constructor(
     private val sessionManager: SessionManager
 ) : ViewModel() {
 
+    companion object {
+        // Ustalony czas ważności tokena w milisekundach (np. 1 godzina)
+        private const val TOKEN_VALIDITY_PERIOD_MS = 60 * 60 * 1000
+    }
+
     fun login(email: String,
               password: String,
               onSuccess: () -> Unit,
@@ -35,7 +40,7 @@ class LoginViewModel @Inject constructor(
                 if (response.isSuccessful) {
                     val token = response.body()?.token
                     if (token != null) {
-                        sessionManager.saveAuthToken(token)
+                        sessionManager.saveAuthToken(token, calculateExpirationTime())
                         onSuccess.invoke()
                     } else {
                         onError.invoke("Token not received")
@@ -48,4 +53,10 @@ class LoginViewModel @Inject constructor(
             }
         }
     }
+
+    private fun calculateExpirationTime(): Long {
+        // Oblicz czas wygaśnięcia tokena na podstawie bieżącego czasu i ustalonego okresu ważności
+        return System.currentTimeMillis() + TOKEN_VALIDITY_PERIOD_MS
+    }
+
 }

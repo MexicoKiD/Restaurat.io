@@ -20,13 +20,22 @@ class MenuViewModel @Inject constructor(
 
     fun loadDishes(
         categoryId: Int?,
-        name: String?
+        name: String?,
+        searchQuery: String? = null
     ) {
         viewModelScope.launch {
             try {
-                val dishesResponse = authService.getDishes(DishRequest(categoryId,name))
+                val dishesResponse = authService.getDishes(DishRequest(categoryId, name))
                 if (dishesResponse.isSuccessful) {
-                    _dishes.value = dishesResponse.body()?.dishes ?: emptyList()
+                    val allDishes = dishesResponse.body()?.dishes ?: emptyList()
+
+                    val filteredDishes = if (!searchQuery.isNullOrBlank()) {
+                        allDishes.filter { dish -> dish.name.contains(searchQuery, ignoreCase = true) }
+                    } else {
+                        allDishes
+                    }
+
+                    _dishes.value = filteredDishes
                 } else {
                     Log.e("MenuViewModel", "Failed to fetch dishes. Error code: ${dishesResponse.code()}")
                 }

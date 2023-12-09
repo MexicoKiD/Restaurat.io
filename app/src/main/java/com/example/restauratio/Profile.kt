@@ -9,8 +9,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.restauratio.databinding.FragmentProfileBinding
+import com.example.restauratio.loginSession.SessionManager
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class Profile : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null

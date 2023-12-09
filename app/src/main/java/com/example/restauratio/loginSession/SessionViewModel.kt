@@ -13,7 +13,11 @@ class SessionViewModel @Inject constructor() : ViewModel() {
     private val _authToken = MutableLiveData<String?>()
     val authToken: LiveData<String?> get() = _authToken
 
-    fun setAuthToken(token: String?) {
+    private val _tokenExpirationTime = MutableLiveData<Long?>()
+    val tokenExpirationTime: LiveData<Long?> get() = _tokenExpirationTime
+
+    fun setAuthToken(token: String?, expirationTime: Long?) {
         _authToken.value = token
+        _tokenExpirationTime.value = expirationTime
     }
 }

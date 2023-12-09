@@ -5,21 +5,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.GravityCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restauratio.R
+import com.example.restauratio.cart.CartViewModel
 import com.example.restauratio.databinding.FragmentMenuBinding
+import com.example.restauratio.loginSession.SessionManager
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MenuFragment : Fragment() {
 
+    @Inject
+    lateinit var sessionManager: SessionManager
+
+    private val menuViewModel: MenuViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels()
+
     private var _binding: FragmentMenuBinding? = null
     private val binding get() = _binding!!
-    private val menuViewModel: MenuViewModel by viewModels()
-    private val dishAdapter = DishAdapter()
 
     private val actionMenuToAboutUs = R.id.action_menu_to_aboutUs
     private val actionMenuToReservation = R.id.action_menu_to_reservationView
@@ -35,9 +44,6 @@ class MenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
-
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = dishAdapter
 
         val drawerLayout = binding.drawerLayout
         val mainView: View = binding.root
@@ -84,6 +90,7 @@ class MenuFragment : Fragment() {
                     true
                 }
                 R.id.logout -> {
+                    sessionManager.logout()
                     findNavController().navigate(actionLogout)
                     drawerLayout.closeDrawer(GravityCompat.START)
                     true
@@ -92,16 +99,32 @@ class MenuFragment : Fragment() {
             }
         }
 
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val dishAdapter = DishAdapter(cartViewModel)
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = dishAdapter
+
         menuViewModel.dishes.observe(viewLifecycleOwner) { dishes ->
             dishAdapter.setDishes(dishes)
         }
         menuViewModel.loadDishes(categoryId = null, name = null)
+
+        dishAdapter.setOnItemClickListener { dish ->
+            cartViewModel.addToCart(dish)
+        }
+
+        binding.textInputLayout3.editText?.addTextChangedListener { text ->
+            val searchQuery = text.toString().trim()
+            menuViewModel.loadDishes(categoryId = null, name = null, searchQuery = searchQuery)
+        }
     }
 
     private fun onHamburgerButtonClick() {
@@ -111,6 +134,16 @@ class MenuFragment : Fragment() {
             drawerLayout.openDrawer(GravityCompat.START)
         } else {
             drawerLayout.closeDrawer(GravityCompat.START)
+        }
+    }
+
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (sessionManager.isLoggedIn()) {
+                requireActivity().finish()
+            } else {
+                findNavController().popBackStack()
+            }
         }
     }
 

@@ -155,6 +155,11 @@
         <action
             android:id="@+id/action_profile_to_aboutMe"
             app:destination="@id/aboutMe" />
+        <action
+            android:id="@+id/action_profile_to_login"
+            app:destination="@id/login"
+            app:popUpTo="@id/profile"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/aboutMe"

@@ -8,17 +8,6 @@
     android:background="@color/background_color"
     tools:context=".menu.MenuFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:nestedScrollingEnabled="false"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout4" />
-
     <FrameLayout
         android:id="@+id/frameLayout4"
         android:layout_width="match_parent"
@@ -132,7 +121,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="@dimen/layout_width_48"
                 android:layout_height="@dimen/layout_height_48"
-                android:layout_marginTop="@dimen/fragment_vertical_margin_16"
+                android:layout_marginTop="12dp"
                 android:contentDescription="TODO"
                 app:layout_constraintEnd_toStartOf="@+id/imageView2"
                 app:layout_constraintStart_toEndOf="@+id/imageView7"
@@ -144,6 +133,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:layout_marginBottom="@dimen/fragment_vertical_margin_8"
                 android:fontFamily="@font/inter"
                 android:text="@string/trolley_text"
@@ -181,14 +171,19 @@
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:layout_gravity="start"
         app:elevation="0dp"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout5"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout4"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout4">
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"
@@ -198,7 +193,9 @@
             android:background="@drawable/drawer_frame"
             app:headerLayout="@layout/nav_header"
             app:itemTextColor="@color/text_color"
-            app:menu="@menu/side_menu" />
+            app:menu="@menu/side_menu" >
+
+        </com.google.android.material.navigation.NavigationView>
     </androidx.drawerlayout.widget.DrawerLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,6 +24,7 @@ class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+
     private val actionLoginToRegistration = R.id.action_login_to_registration
     private val actionLoginToMenu = R.id.action_login_to_menu
 
@@ -42,6 +43,10 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (sessionManager.isLoggedIn()) {
+            findNavController().navigate(actionLoginToMenu)
+        }
 
         binding.button.setOnClickListener {
             val email = binding.emailEditText.text.toString()
