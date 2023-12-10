@@ -17,7 +17,7 @@ class LoginViewModel @Inject constructor(
 ) : ViewModel() {
 
     companion object {
-        // Ustalony czas ważności tokena w milisekundach (np. 1 godzina)
+        // Ustalony czas ważności tokena w milisekundach
         private const val TOKEN_VALIDITY_PERIOD_MS = 60 * 60 * 1000
     }
 
@@ -30,7 +30,7 @@ class LoginViewModel @Inject constructor(
             try {
                 val response = withContext(Dispatchers.IO) {
                     authService.login(
-                        LoginRequest(
+                        LoginModel(
                             email,
                             password
                         )
@@ -55,7 +55,6 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun calculateExpirationTime(): Long {
-        // Oblicz czas wygaśnięcia tokena na podstawie bieżącego czasu i ustalonego okresu ważności
         return System.currentTimeMillis() + TOKEN_VALIDITY_PERIOD_MS
     }
 

@@ -10,10 +10,16 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.restauratio.R
 import com.example.restauratio.databinding.FragmentRegistrationBinding
+import com.example.restauratio.loginSession.SessionManager
+import com.example.restauratio.profile.UserDataModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class RegistrationFragment : Fragment() {
+
+    @Inject
+    lateinit var sessionManager: SessionManager
 
     private val registerViewModel: RegisterViewModel by viewModels()
 
@@ -45,10 +51,10 @@ class RegistrationFragment : Fragment() {
             val address = binding.addressEditText.text.toString()
             val city = binding.cityEditText.text.toString()
             val postalCode = binding.postalCodeEditText.text.toString()
-            val country = binding.countryEditText.text.toString()
+            val country = "Polska"
             val phone = binding.phoneEditText.text.toString()
-            val firstName = "Jan"
-            val lastName = "Kowalski"
+            val firstName = binding.nameEditText.text.toString()
+            val lastName = binding.surnameEditText.text.toString()
 
             registerViewModel.register(
                 email,
@@ -61,7 +67,21 @@ class RegistrationFragment : Fragment() {
                 postalCode,
                 country,
                 phone,
-                { findNavController().navigate(action)}
+                {
+                    findNavController().navigate(action)
+
+                    val userDataModel = UserDataModel(
+                        email = email,
+                        firstName = firstName,
+                        lastName = lastName,
+                        address = address,
+                        city = city,
+                        postalCode = postalCode,
+                        phone = phone
+                    )
+                    sessionManager.saveUserData(userDataModel)
+
+                }
             ) { showError() }
         }
     }

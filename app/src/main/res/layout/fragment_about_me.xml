@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:paddingBottom="16dp"
-    tools:context=".PrivacyPolicy">
+    tools:context=".sidemenu.PrivacyPolicy">
 
     <TextView
         android:id="@+id/textView34"

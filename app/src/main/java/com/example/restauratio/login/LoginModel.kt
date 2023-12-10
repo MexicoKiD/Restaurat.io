@@ -1,6 +1,6 @@
 package com.example.restauratio.login
 
-data class LoginRequest(
+data class LoginModel(
     val email: String,
     val password: String
 )

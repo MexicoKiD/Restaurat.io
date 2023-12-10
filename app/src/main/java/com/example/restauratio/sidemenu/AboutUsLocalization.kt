@@ -1,4 +1,4 @@
-package com.example.restauratio
+package com.example.restauratio.sidemenu
 
 import android.content.Intent
 import android.net.Uri
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.restauratio.R
 import com.example.restauratio.databinding.FragmentAboutUsLocalizationBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -22,7 +23,8 @@ class AboutUsLocalization : Fragment(), OnMapReadyCallback {
     private val binding get() = _binding!!
     private lateinit var googleMap: GoogleMap
     private val actionAboutUsLocalizationToAboutUs = R.id.action_aboutUsLocalization_to_aboutUs
-    private val actionAboutUsLocalizationToAboutUsOpinions = R.id.action_aboutUsLocalization_to_aboutUsOpinions
+    private val actionAboutUsLocalizationToAboutUsOpinions =
+        R.id.action_aboutUsLocalization_to_aboutUsOpinions
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

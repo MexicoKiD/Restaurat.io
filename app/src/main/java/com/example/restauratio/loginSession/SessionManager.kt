@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import com.example.restauratio.profile.UserDataModel
 import javax.inject.Inject
 
 
@@ -56,5 +57,34 @@ class SessionManager @Inject constructor(
 
     fun logout() {
         clearAuthToken()
+    }
+
+    fun getUserEmail(): String {
+        return sharedPreferences.getString("user_email", "") ?: ""
+    }
+
+    fun saveUserData(userDataModel: UserDataModel) {
+        sharedPreferences.edit {
+            putString("user_email", userDataModel.email)
+            putString("user_firstname", userDataModel.firstName)
+            putString("user_lastname", userDataModel.lastName)
+            putString("user_address", userDataModel.address)
+            putString("user_city", userDataModel.city)
+            putString("user_phone", userDataModel.phone)
+            putString("user_postalCode", userDataModel.postalCode)
+        }
+    }
+
+    fun getUserData(): UserDataModel {
+        return UserDataModel(
+            sharedPreferences.getString("user_address", "") ?: "",
+            sharedPreferences.getString("user_city", "") ?: "",
+            sharedPreferences.getString("user_email", "") ?: "",
+            sharedPreferences.getString("user_firstname", "") ?: "",
+            sharedPreferences.getString("user_lastname", "") ?: "",
+            sharedPreferences.getString("user_phone", "") ?: "",
+            sharedPreferences.getString("user_postalCode", "") ?: "",
+
+        )
     }
 }

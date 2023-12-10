@@ -79,5 +79,7 @@
     <string name="kraj">Kraj</string>
     <string name="numer_telefonu">Numer telefonu</string>
     <string name="kod_pocztowy">Kod pocztowy</string>
+    <string name="surname">Nazwisko</string>
+    <string name="change_password">Zmień hasło</string>
 
 </resources>

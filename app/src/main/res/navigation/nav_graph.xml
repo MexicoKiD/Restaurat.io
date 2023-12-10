@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutUs"
-        android:name="com.example.restauratio.AboutUs"
+        android:name="com.example.restauratio.sidemenu.AboutUs"
         android:label="fragment_about_us"
         tools:layout="@layout/fragment_about_us" >
         <action
@@ -76,7 +76,7 @@
     </fragment>
     <fragment
         android:id="@+id/rulesView"
-        android:name="com.example.restauratio.Rules"
+        android:name="com.example.restauratio.sidemenu.Rules"
         android:label="fragment_rules"
         tools:layout="@layout/fragment_rules" >
         <action
@@ -86,7 +86,7 @@
     </fragment>
     <fragment
         android:id="@+id/reservationView"
-        android:name="com.example.restauratio.Reservation"
+        android:name="com.example.restauratio.sidemenu.Reservation"
         android:label="fragment_reservation"
         tools:layout="@layout/fragment_reservation" >
         <action
@@ -96,7 +96,7 @@
     </fragment>
     <fragment
         android:id="@+id/privacyPolicy"
-        android:name="com.example.restauratio.PrivacyPolicy"
+        android:name="com.example.restauratio.sidemenu.PrivacyPolicy"
         android:label="fragment_privacy_policy"
         tools:layout="@layout/fragment_privacy_policy" >
         <action
@@ -106,7 +106,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutUsLocalization"
-        android:name="com.example.restauratio.AboutUsLocalization"
+        android:name="com.example.restauratio.sidemenu.AboutUsLocalization"
         android:label="AboutUsLocalization" >
         <action
             android:id="@+id/action_aboutUsLocalization_to_aboutUs"
@@ -121,7 +121,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutUsOpinions"
-        android:name="com.example.restauratio.AboutUsOpinions"
+        android:name="com.example.restauratio.sidemenu.AboutUsOpinions"
         android:label="AboutUsOpinions" >
         <action
             android:id="@+id/action_aboutUsOpinions_to_aboutUsLocalization"
@@ -136,7 +136,7 @@
     </fragment>
     <fragment
         android:id="@+id/alerts"
-        android:name="com.example.restauratio.Alerts"
+        android:name="com.example.restauratio.alerts.Alerts"
         android:label="Alerts" >
         <action
             android:id="@+id/action_alerts_pop"
@@ -145,7 +145,7 @@
     </fragment>
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.restauratio.Profile"
+        android:name="com.example.restauratio.profile.Profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -160,10 +160,13 @@
             app:destination="@id/login"
             app:popUpTo="@id/profile"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_profile_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutMe"
-        android:name="com.example.restauratio.AboutMe"
+        android:name="com.example.restauratio.profile.AboutMeFragment"
         android:label="AboutMe" >
         <action
             android:id="@+id/action_aboutMe_pop"
@@ -175,7 +178,7 @@
     </fragment>
     <fragment
         android:id="@+id/editDeliveryAddress"
-        android:name="com.example.restauratio.EditDeliveryAddress"
+        android:name="com.example.restauratio.profile.EditDeliveryAddress"
         android:label="fragment_edit_address"
         tools:layout="@layout/fragment_edit_address" >
         <action
@@ -185,12 +188,22 @@
     </fragment>
     <fragment
         android:id="@+id/orders"
-        android:name="com.example.restauratio.Orders"
+        android:name="com.example.restauratio.orders.Orders"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" >
         <action
             android:id="@+id/action_orders_pop"
             app:popUpTo="@id/orders"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.example.restauratio.profile.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" >
+        <action
+            android:id="@+id/action_changePasswordFragment_pop"
+            app:popUpTo="@id/changePasswordFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

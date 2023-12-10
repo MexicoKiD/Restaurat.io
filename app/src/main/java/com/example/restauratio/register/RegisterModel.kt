@@ -1,6 +1,6 @@
 package com.example.restauratio.register
 
-data class RegisterRequest(
+data class RegisterModel(
     val email: String,
     val password: String,
     val passwordAgain: String,

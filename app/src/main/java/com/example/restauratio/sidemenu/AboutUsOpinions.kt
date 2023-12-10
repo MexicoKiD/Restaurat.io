@@ -1,4 +1,4 @@
-package com.example.restauratio
+package com.example.restauratio.sidemenu
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,9 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
-import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
+import com.example.restauratio.R
 import com.example.restauratio.databinding.FragmentAboutUsOpinionsBinding
 
 class AboutUsOpinions : Fragment() {
@@ -20,7 +20,8 @@ class AboutUsOpinions : Fragment() {
     private var _binding: FragmentAboutUsOpinionsBinding? = null
     private val binding get() = _binding!!
     private val actionAboutUsOpinionsToAboutUs = R.id.action_aboutUsOpinions_to_aboutUs
-    private val actionAboutUsOpinionsToAboutUsLocalization = R.id.action_aboutUsOpinions_to_aboutUsLocalization
+    private val actionAboutUsOpinionsToAboutUsLocalization =
+        R.id.action_aboutUsOpinions_to_aboutUsLocalization
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(

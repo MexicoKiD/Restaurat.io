@@ -30,7 +30,7 @@ class RegisterViewModel @Inject constructor(private val authService: AuthService
             try {
                 val response = withContext(Dispatchers.IO) {
                     authService.register(
-                        RegisterRequest(
+                        RegisterModel(
                             email,
                             password,
                             passwordAgain,

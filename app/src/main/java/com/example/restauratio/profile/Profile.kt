@@ -1,4 +1,4 @@
-package com.example.restauratio
+package com.example.restauratio.profile
 
 import android.content.Intent
 import android.net.Uri
@@ -8,10 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.restauratio.R
 import com.example.restauratio.databinding.FragmentProfileBinding
-import com.example.restauratio.loginSession.SessionManager
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class Profile : Fragment() {
@@ -20,6 +19,7 @@ class Profile : Fragment() {
     private val binding get() = _binding!!
     private val actionProfileToPop = R.id.action_profile_pop
     private val actionProfileToAboutMe = R.id.action_profile_to_aboutMe
+    private val actionProfileToChangePassword = R.id.action_profile_to_changePasswordFragment
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +33,10 @@ class Profile : Fragment() {
 
         binding.imageView30.setOnClickListener{
             findNavController().navigate(actionProfileToAboutMe)
+        }
+
+        binding.imageView37.setOnClickListener{
+            findNavController().navigate(actionProfileToChangePassword)
         }
 
         binding.imageView32.setOnClickListener{

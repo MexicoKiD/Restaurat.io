@@ -1,4 +1,4 @@
-package com.example.restauratio
+package com.example.restauratio.profile
 
 
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import androidx.navigation.fragment.findNavController
+import com.example.restauratio.R
 import com.example.restauratio.databinding.DialogPopupBinding
 import com.example.restauratio.login.LoginFragment
 import com.example.restauratio.loginSession.SessionManager
