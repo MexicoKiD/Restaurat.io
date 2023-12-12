@@ -5,7 +5,8 @@ data class DishModel(
     val name: String,
     val description: String,
     val price: Double,
-    val dishCategoryIds: List<Int>
+    val dishCategoryIds: List<Int>,
+    var quantity: Int = 0
 )
 
 data class DishRequest(

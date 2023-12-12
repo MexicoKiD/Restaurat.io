@@ -1,4 +1,4 @@
-package com.example.restauratio.profile
+package com.example.restauratio.profile.aboutme
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

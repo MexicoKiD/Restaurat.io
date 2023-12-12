@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_menu_to_orders"
             app:destination="@id/orders" />
+        <action
+            android:id="@+id/action_menu_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutUs"
@@ -166,7 +169,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutMe"
-        android:name="com.example.restauratio.profile.AboutMeFragment"
+        android:name="com.example.restauratio.profile.aboutme.AboutMeFragment"
         android:label="AboutMe" >
         <action
             android:id="@+id/action_aboutMe_pop"
@@ -178,7 +181,7 @@
     </fragment>
     <fragment
         android:id="@+id/editDeliveryAddress"
-        android:name="com.example.restauratio.profile.EditDeliveryAddress"
+        android:name="com.example.restauratio.profile.aboutme.EditDeliveryAddress"
         android:label="fragment_edit_address"
         tools:layout="@layout/fragment_edit_address" >
         <action
@@ -198,12 +201,22 @@
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="com.example.restauratio.profile.ChangePasswordFragment"
+        android:name="com.example.restauratio.profile.changepassword.ChangePasswordFragment"
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password" >
         <action
             android:id="@+id/action_changePasswordFragment_pop"
             app:popUpTo="@id/changePasswordFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.restauratio.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_pop"
+            app:popUpTo="@id/cartFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

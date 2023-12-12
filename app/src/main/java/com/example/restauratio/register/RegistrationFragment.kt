@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.restauratio.R
 import com.example.restauratio.databinding.FragmentRegistrationBinding
 import com.example.restauratio.loginSession.SessionManager
-import com.example.restauratio.profile.UserDataModel
+import com.example.restauratio.profile.aboutme.UserDataModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.example.restauratio.profile
+package com.example.restauratio.profile.changepassword
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.restauratio.loginSession.SessionManager
@@ -19,7 +19,7 @@ class ChangePasswordViewModel @Inject constructor(
         val authToken = sessionManager.getAuthToken().value.orEmpty()
         val userEmail = sessionManager.getUserEmail()
 
-        val resetPasswordRequest = ResetPasswordModel(
+        val resetPasswordRequest = ChangePasswordModel(
             email = userEmail,
             password = password,
             passwordAgain = passwordAgain

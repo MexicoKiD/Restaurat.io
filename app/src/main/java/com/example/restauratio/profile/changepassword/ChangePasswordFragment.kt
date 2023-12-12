@@ -1,4 +1,4 @@
-package com.example.restauratio.profile
+package com.example.restauratio.profile.changepassword
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.restauratio.R
 import com.example.restauratio.databinding.FragmentChangePasswordBinding
-import com.example.restauratio.databinding.FragmentProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

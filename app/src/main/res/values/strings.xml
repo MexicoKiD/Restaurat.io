@@ -81,5 +81,7 @@
     <string name="kod_pocztowy">Kod pocztowy</string>
     <string name="surname">Nazwisko</string>
     <string name="change_password">Zmień hasło</string>
+    <string name="go_back_text">Powrót</string>
+    <string name="get_order_text">Zamów</string>
 
 </resources>

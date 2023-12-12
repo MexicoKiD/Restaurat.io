@@ -3,8 +3,8 @@ import com.example.restauratio.login.LoginModel
 import com.example.restauratio.login.LoginResponse
 import com.example.restauratio.menu.DishRequest
 import com.example.restauratio.menu.DishResponse
-import com.example.restauratio.profile.ResetPasswordModel
-import com.example.restauratio.profile.ResetPasswordResponse
+import com.example.restauratio.profile.changepassword.ChangePasswordModel
+import com.example.restauratio.profile.changepassword.ChangePasswordResponse
 import com.example.restauratio.register.RegisterModel
 import retrofit2.Call
 import retrofit2.Response
@@ -28,6 +28,6 @@ interface AuthService {
     @POST("/api/v1/users/password/reset")
     suspend fun resetPassword(
         @Header("Authorization") authToken: String,
-        @Body resetPasswordRequest: ResetPasswordModel
-    ): Response<ResetPasswordResponse>
+        @Body resetPasswordRequest: ChangePasswordModel
+    ): Response<ChangePasswordResponse>
 }

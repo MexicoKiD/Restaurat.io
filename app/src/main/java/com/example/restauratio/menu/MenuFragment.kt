@@ -38,6 +38,7 @@ class MenuFragment : Fragment() {
     private val actionMenuToAlerts = R.id.action_menu_to_alerts
     private val actionMenuToProfile = R.id.action_menu_to_profile
     private val actionMenuToOrders = R.id.action_menu_to_orders
+    private val actionMenuToCart = R.id.action_menu_to_cartFragment
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,37 +67,31 @@ class MenuFragment : Fragment() {
         binding.imageView7.setOnClickListener{
             findNavController().navigate(actionMenuToOrders)
         }
+        binding.imageView.setOnClickListener {
+            findNavController().navigate(actionMenuToCart)
+        }
 
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.about_us -> {
                     findNavController().navigate(actionMenuToAboutUs)
-                    drawerLayout.closeDrawer(GravityCompat.START)
-                    true
                 }
                 R.id.reservation -> {
                     findNavController().navigate(actionMenuToReservation)
-                    drawerLayout.closeDrawer(GravityCompat.START)
-                    true
                 }
                 R.id.rules -> {
                     findNavController().navigate(actionMenuToRules)
-                    drawerLayout.closeDrawer(GravityCompat.START)
-                    true
                 }
                 R.id.privacy_policy -> {
                     findNavController().navigate(actionMenuToPrivacyPolicy)
-                    drawerLayout.closeDrawer(GravityCompat.START)
-                    true
                 }
                 R.id.logout -> {
                     sessionManager.logout()
                     findNavController().navigate(actionLogout)
-                    drawerLayout.closeDrawer(GravityCompat.START)
-                    true
                 }
-                else -> false
             }
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+            true
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
@@ -116,10 +111,6 @@ class MenuFragment : Fragment() {
             dishAdapter.setDishes(dishes)
         }
         menuViewModel.loadDishes(categoryId = null, name = null)
-
-        dishAdapter.setOnItemClickListener { dish ->
-            cartViewModel.addToCart(dish)
-        }
 
         binding.textInputLayout3.editText?.addTextChangedListener { text ->
             val searchQuery = text.toString().trim()

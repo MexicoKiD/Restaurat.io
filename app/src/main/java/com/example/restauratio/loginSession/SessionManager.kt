@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
-import com.example.restauratio.profile.UserDataModel
+import com.example.restauratio.profile.aboutme.UserDataModel
 import javax.inject.Inject
 
 
