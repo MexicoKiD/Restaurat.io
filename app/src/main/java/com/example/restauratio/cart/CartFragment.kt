@@ -21,9 +21,7 @@ class CartFragment : Fragment() {
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
 
-    private val cartAdapter: CartAdapter by lazy {
-        CartAdapter(cartViewModel)
-    }
+    private lateinit var cartAdapter: CartAdapter
 
     private val actionCartToPop = R.id.action_cartFragment_pop
 
@@ -32,32 +30,24 @@ class CartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
+        cartAdapter = CartAdapter(cartViewModel)
 
-        binding.imageView4.setOnClickListener {
-            findNavController().navigate(actionCartToPop)
-        }
-
-        observeCartItems()
-
-    }
-
-    private fun setupRecyclerView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = cartAdapter
-    }
 
-    private fun observeCartItems() {
         cartViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
             Log.d("CartFragment", "Observed cart items: $cartItems")
             cartAdapter.setCartItems(cartItems)
+        }
+
+        binding.imageView4.setOnClickListener {
+            findNavController().navigate(actionCartToPop)
         }
     }
 

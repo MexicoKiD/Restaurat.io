@@ -23,7 +23,6 @@ class DishAdapter(
         val addToCartButton: ImageView = binding.imageView8
 
         init {
-
             addToCartButton.setOnClickListener {
                 val clickedDish = dishes[adapterPosition]
                 cartViewModel.addToCart(clickedDish)

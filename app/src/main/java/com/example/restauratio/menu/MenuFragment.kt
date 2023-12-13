@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restauratio.R
+import com.example.restauratio.cart.CartFragment
 import com.example.restauratio.cart.CartViewModel
 import com.example.restauratio.databinding.FragmentMenuBinding
 import com.example.restauratio.loginSession.SessionManager
@@ -29,6 +30,8 @@ class MenuFragment : Fragment() {
 
     private var _binding: FragmentMenuBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var dishAdapter: DishAdapter
 
     private val actionMenuToAboutUs = R.id.action_menu_to_aboutUs
     private val actionMenuToReservation = R.id.action_menu_to_reservationView
@@ -102,7 +105,7 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dishAdapter = DishAdapter(cartViewModel)
+        dishAdapter = DishAdapter(cartViewModel)
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = dishAdapter

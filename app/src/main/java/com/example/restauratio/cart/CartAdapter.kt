@@ -21,6 +21,7 @@ class CartAdapter(
         val dishImage: CircleImageView = binding.imageView2
         val dishName: TextView = binding.textView2
         val dishPrice: TextView = binding.textView
+        val quantityTextView: TextView = binding.textView55
         val removeFromCartButton: ImageView = binding.imageView8
 
         init {
@@ -43,6 +44,7 @@ class CartAdapter(
 
         holder.dishName.text = cartItem.name
         holder.dishPrice.text = String.format("%.2f zł", cartItem.price)
+        holder.quantityTextView.text = cartItem.quantity.toString()
     }
 
     override fun getItemCount(): Int {
@@ -50,9 +52,8 @@ class CartAdapter(
     }
 
     fun setCartItems(newCartItems: List<DishModel>) {
-        Log.d("CartAdapter", "Setting cart items: $newCartItems")
+        Log.d("CartAdapter", "Setting cart items: $cartItems")
         cartItems = newCartItems
         notifyDataSetChanged()
     }
-
 }
