@@ -59,7 +59,8 @@
             app:destination="@id/orders" />
         <action
             android:id="@+id/action_menu_to_cartFragment"
-            app:destination="@id/cartFragment" />
+            app:destination="@id/cartFragment" >
+        </action>
     </fragment>
     <fragment
         android:id="@+id/aboutUs"

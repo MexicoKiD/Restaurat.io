@@ -1,17 +1,21 @@
 package com.example.restauratio.menu
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restauratio.R
+import com.example.restauratio.cart.CartAdapter
 import com.example.restauratio.cart.CartFragment
 import com.example.restauratio.cart.CartViewModel
 import com.example.restauratio.databinding.FragmentMenuBinding
@@ -26,12 +30,13 @@ class MenuFragment : Fragment() {
     lateinit var sessionManager: SessionManager
 
     private val menuViewModel: MenuViewModel by viewModels()
-    private val cartViewModel: CartViewModel by viewModels()
+    private val cartViewModel: CartViewModel by activityViewModels()
 
     private var _binding: FragmentMenuBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var dishAdapter: DishAdapter
+    private lateinit var cartAdapter: CartAdapter
 
     private val actionMenuToAboutUs = R.id.action_menu_to_aboutUs
     private val actionMenuToReservation = R.id.action_menu_to_reservationView
@@ -105,6 +110,8 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //cartViewModel.loadCartItemsFromPrefs()
+
         dishAdapter = DishAdapter(cartViewModel)
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -114,6 +121,16 @@ class MenuFragment : Fragment() {
             dishAdapter.setDishes(dishes)
         }
         menuViewModel.loadDishes(categoryId = null, name = null)
+
+        cartAdapter = CartAdapter(cartViewModel)
+
+        cartViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
+            Log.d("CartFragment", "Observed cart items: $cartItems")
+            cartAdapter.setCartItems(cartItems)
+            val cartItemCount = cartItems.sumOf { it.quantity }
+            binding.textView57.text = cartItemCount.toString()
+            binding.frameLayout6.isVisible = binding.textView57.text.toString() != "0"
+        }
 
         binding.textInputLayout3.editText?.addTextChangedListener { text ->
             val searchQuery = text.toString().trim()
