@@ -220,4 +220,17 @@
             app:popUpTo="@id/cartFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.restauratio.products.ProductDetailsFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" >
+        <action
+            android:id="@+id/action_productDetailFragment_pop"
+            app:popUpTo="@id/productDetailFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_productDetailFragment"
+        app:destination="@id/productDetailFragment" />
 </navigation>

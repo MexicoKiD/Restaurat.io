@@ -68,36 +68,38 @@
 
             <ImageView
                 android:id="@+id/imageView8"
-                android:layout_width="@dimen/layout_width_48"
-                android:layout_height="@dimen/layout_height_48"
-                android:layout_marginEnd="16dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView55"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/recycle_bin_filled_tool_1"
+                app:srcCompat="@drawable/baseline_horizontal_rule_24"
                 tools:ignore="ContentDescription" />
-
-            <FrameLayout
-                android:id="@+id/frameLayout10"
-                android:layout_width="1dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/text_hint_color"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView8"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0">
-
-            </FrameLayout>
 
             <TextView
                 android:id="@+id/textView55"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/inter"
+                android:text="100"
+                android:textColor="@color/text_color"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/frameLayout10"
+                app:layout_constraintEnd_toStartOf="@+id/imageView39"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView39"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/baseline_add_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -14,56 +14,81 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restauratio.R
 import com.example.restauratio.databinding.FragmentCartBinding
+import com.example.restauratio.databinding.FragmentEmptyCartBinding
+import com.example.restauratio.products.ProductDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CartFragment : Fragment() {
 
     private val cartViewModel: CartViewModel by activityViewModels()
+    private val productDetailsViewModel: ProductDetailsViewModel by activityViewModels()
 
-    private var _binding: FragmentCartBinding? = null
-    private val binding get() = _binding!!
+    private var _bindingCart: FragmentCartBinding? = null
+    private val bindingCart get() = _bindingCart!!
+
+    private var _bindingEmptyCart: FragmentEmptyCartBinding? = null
+    private val bindingEmptyCart get() = _bindingEmptyCart!!
 
     private lateinit var cartAdapter: CartAdapter
 
     private val actionCartToPop = R.id.action_cartFragment_pop
+    private val actionCartToProductDetails = R.id.action_global_productDetailFragment
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCartBinding.inflate(inflater, container, false)
-        return binding.root
+
+        return if (cartViewModel.cartItems.value?.isEmpty() != false){
+            _bindingEmptyCart = FragmentEmptyCartBinding.inflate(inflater, container, false)
+            bindingEmptyCart.root
+        } else {
+            _bindingCart = FragmentCartBinding.inflate(inflater, container, false)
+            bindingCart.root
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //cartViewModel.loadCartItemsFromPrefs()
+        if (_bindingCart != null) {
 
-        cartAdapter = CartAdapter(cartViewModel)
+            //cartViewModel.loadCartItemsFromPrefs()
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = cartAdapter
+            cartAdapter = CartAdapter(cartViewModel) { clickedDish ->
+                productDetailsViewModel.setSelectedDish(clickedDish)
+                findNavController().navigate(actionCartToProductDetails)
+            }
 
-        cartViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
-            Log.d("CartFragment", "Observed cart items: $cartItems")
-            cartAdapter.setCartItems(cartItems)
-            val totalSum = cartItems.sumOf { it.price * it.quantity }
-            binding.button4.text = "Zamów: ${String.format("%.2f zł", totalSum)}"
-        }
+            bindingCart.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            bindingCart.recyclerView.adapter = cartAdapter
 
-        binding.imageView38.setOnClickListener {
-            cartViewModel.clearCart()
-        }
+            cartViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
+                Log.d("CartFragment", "Observed cart items: $cartItems")
+                cartAdapter.setCartItems(cartItems)
+                val totalSum = cartItems.sumOf { it.price * it.quantity }
+                bindingCart.button4.text = "Zamów: ${String.format("%.2f zł", totalSum)}"
+            }
 
-        binding.imageView4.setOnClickListener {
-            findNavController().navigate(actionCartToPop)
+            bindingCart.imageView38.setOnClickListener {
+                cartViewModel.clearCart()
+            }
+
+            bindingCart.imageView4.setOnClickListener {
+                findNavController().navigate(actionCartToPop)
+            }
+
+        } else {
+            bindingEmptyCart.imageView4.setOnClickListener {
+                findNavController().navigate(actionCartToPop)
+            }
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        _bindingCart = null
+        _bindingEmptyCart = null
     }
 }

@@ -5,13 +5,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.restauratio.cart.CartViewModel
 import com.example.restauratio.databinding.MenuItemBinding
+import com.example.restauratio.products.ProductDetailsViewModel
 import de.hdodenhof.circleimageview.CircleImageView
 
 class DishAdapter(
-    private val cartViewModel: CartViewModel
+    private val cartViewModel: CartViewModel,
+    private val onItemClick: (DishModel) -> Unit
 ) : RecyclerView.Adapter<DishAdapter.DishViewHolder>() {
 
     private var dishes: List<DishModel> = emptyList()
@@ -23,15 +27,18 @@ class DishAdapter(
         val addToCartButton: ImageView = binding.imageView8
 
         init {
+            dishImage.setOnClickListener {
+                val clickedDish = dishes[adapterPosition]
+                onItemClick.invoke(clickedDish)
+            }
+
             addToCartButton.setOnClickListener {
                 val clickedDish = dishes[adapterPosition]
                 cartViewModel.addToCart(clickedDish)
-                Toast.makeText(itemView.context, "Danie dodane do koszyka", Toast.LENGTH_SHORT).show()
             }
         }
 
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishViewHolder {
         val inflater = LayoutInflater.from(parent.context)

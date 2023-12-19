@@ -12,7 +12,8 @@ import com.example.restauratio.menu.DishModel
 import de.hdodenhof.circleimageview.CircleImageView
 
 class CartAdapter(
-    private val cartViewModel: CartViewModel
+    private val cartViewModel: CartViewModel,
+    private val onItemClick: (DishModel) -> Unit
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     private var cartItems: List<DishModel> = emptyList()
@@ -23,12 +24,20 @@ class CartAdapter(
         val dishPrice: TextView = binding.textView
         val quantityTextView: TextView = binding.textView55
         val removeFromCartButton: ImageView = binding.imageView8
+        val addButton: ImageView = binding.imageView39
 
         init {
+            dishImage.setOnClickListener {
+                val clickedDish = cartItems[adapterPosition]
+                onItemClick.invoke(clickedDish)
+            }
             removeFromCartButton.setOnClickListener {
                 val removedDish = cartItems[adapterPosition]
                 cartViewModel.removeFromCart(removedDish)
-                Toast.makeText(itemView.context, "Danie usunięte z koszyka", Toast.LENGTH_SHORT).show()
+            }
+            addButton.setOnClickListener {
+                val addDish = cartItems[adapterPosition]
+                cartViewModel.addToCart(addDish)
             }
         }
     }

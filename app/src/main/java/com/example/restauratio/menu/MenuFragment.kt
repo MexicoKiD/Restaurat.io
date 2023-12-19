@@ -20,6 +20,7 @@ import com.example.restauratio.cart.CartFragment
 import com.example.restauratio.cart.CartViewModel
 import com.example.restauratio.databinding.FragmentMenuBinding
 import com.example.restauratio.loginSession.SessionManager
+import com.example.restauratio.products.ProductDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -31,6 +32,7 @@ class MenuFragment : Fragment() {
 
     private val menuViewModel: MenuViewModel by viewModels()
     private val cartViewModel: CartViewModel by activityViewModels()
+    private val productDetailsViewModel: ProductDetailsViewModel by activityViewModels()
 
     private var _binding: FragmentMenuBinding? = null
     private val binding get() = _binding!!
@@ -47,6 +49,8 @@ class MenuFragment : Fragment() {
     private val actionMenuToProfile = R.id.action_menu_to_profile
     private val actionMenuToOrders = R.id.action_menu_to_orders
     private val actionMenuToCart = R.id.action_menu_to_cartFragment
+    private val actionMenuToProductDetails = R.id.action_global_productDetailFragment
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -112,7 +116,10 @@ class MenuFragment : Fragment() {
 
         //cartViewModel.loadCartItemsFromPrefs()
 
-        dishAdapter = DishAdapter(cartViewModel)
+        dishAdapter = DishAdapter(cartViewModel) { clickedDish ->
+            productDetailsViewModel.setSelectedDish(clickedDish)
+            findNavController().navigate(actionMenuToProductDetails)
+        }
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = dishAdapter
@@ -122,7 +129,9 @@ class MenuFragment : Fragment() {
         }
         menuViewModel.loadDishes(categoryId = null, name = null)
 
-        cartAdapter = CartAdapter(cartViewModel)
+        cartAdapter = CartAdapter(cartViewModel) { clickedDish ->
+            productDetailsViewModel.setSelectedDish(clickedDish)
+        }
 
         cartViewModel.cartItems.observe(viewLifecycleOwner) { cartItems ->
             Log.d("CartFragment", "Observed cart items: $cartItems")
