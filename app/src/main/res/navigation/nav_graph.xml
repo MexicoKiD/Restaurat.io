@@ -160,11 +160,6 @@
             android:id="@+id/action_profile_to_aboutMe"
             app:destination="@id/aboutMe" />
         <action
-            android:id="@+id/action_profile_to_login"
-            app:destination="@id/login"
-            app:popUpTo="@id/profile"
-            app:popUpToInclusive="true"/>
-        <action
             android:id="@+id/action_profile_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
     </fragment>
@@ -233,4 +228,5 @@
     <action
         android:id="@+id/action_global_productDetailFragment"
         app:destination="@id/productDetailFragment" />
+    <action android:id="@+id/action_global_login" app:destination="@id/login" />
 </navigation>

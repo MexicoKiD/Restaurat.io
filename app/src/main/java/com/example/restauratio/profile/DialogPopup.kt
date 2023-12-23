@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import com.example.restauratio.R
 import com.example.restauratio.databinding.DialogPopupBinding
 import com.example.restauratio.login.LoginFragment
@@ -25,6 +26,7 @@ class DialogPopup : DialogFragment() {
     private val binding get() = _binding!!
     private var message: String = ""
     private var confirmationMessage: String = ""
+    val action = R.id.action_global_login
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,12 +42,14 @@ class DialogPopup : DialogFragment() {
                 //TODO dodać usuwanie konta
                 showToast(confirmationMessage)
                 sessionManager.logout()
-                returnToLogin()
+                findNavController().popBackStack(R.id.login, true)
+                findNavController().navigate(action)
                 dismiss()
             } else {
                 showToast(confirmationMessage)
                 sessionManager.logout()
-                returnToLogin()
+                findNavController().popBackStack(R.id.login, true)
+                findNavController().navigate(action)
                 dismiss()
             }
         }
@@ -67,13 +71,5 @@ class DialogPopup : DialogFragment() {
 
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
-    }
-
-    private fun returnToLogin(){
-        val fragmentManager = parentFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        fragmentTransaction.replace(R.id.fragmentContainerView, LoginFragment())
-        fragmentTransaction.commit()
     }
 }

@@ -11,17 +11,23 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.restauratio.R
 import com.example.restauratio.databinding.FragmentChangePasswordBinding
+import com.example.restauratio.loginSession.SessionManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ChangePasswordFragment : Fragment() {
+
+    @Inject
+    lateinit var sessionManager: SessionManager
 
     private val viewModel: ChangePasswordViewModel by viewModels()
 
     private var _binding: FragmentChangePasswordBinding? = null
     private val binding get() = _binding!!
 
+    private val action = R.id.action_global_login
     private val actionChangePasswordPop = R.id.action_changePasswordFragment_pop
 
     override fun onCreateView(
@@ -45,13 +51,13 @@ class ChangePasswordFragment : Fragment() {
             val passwordAgain = binding.passwordAgainEditText.text.toString()
 
             lifecycleScope.launch {
-                try {
                     viewModel.resetPassword(password, passwordAgain)
-                    Toast.makeText(requireContext(), "Hasło zmienione", Toast.LENGTH_LONG).show()
-                } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "Wystąpił błąd: ${e.message}", Toast.LENGTH_LONG).show()
-                }
             }
+
+            Toast.makeText(requireContext(), "Hasło zmienione", Toast.LENGTH_LONG).show()
+            sessionManager.logout()
+            findNavController().popBackStack(R.id.login, true)
+            findNavController().navigate(action)
         }
     }
 }

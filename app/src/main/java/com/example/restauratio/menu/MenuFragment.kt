@@ -114,7 +114,7 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //cartViewModel.loadCartItemsFromPrefs()
+        cartViewModel.loadCartItemsFromPrefs()
 
         dishAdapter = DishAdapter(cartViewModel) { clickedDish ->
             productDetailsViewModel.setSelectedDish(clickedDish)

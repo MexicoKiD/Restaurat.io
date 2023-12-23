@@ -43,10 +43,9 @@ class CartViewModel @Inject constructor(
         }
 
         _cartItems.value = currentItems
+        saveCartItemsToPrefs()
 
         Log.d("CartViewModel", "Updated cart items: ${_cartItems.value}")
-
-        //saveCartItemsToPrefs()
     }
 
     fun removeFromCart(cartItem: DishModel) {
@@ -63,30 +62,29 @@ class CartViewModel @Inject constructor(
                 currentCartItems.removeAt(existingDishIndex)
             }
             _cartItems.value = currentCartItems
-            //saveCartItemsToPrefs()
+            saveCartItemsToPrefs()
         }
     }
 
     fun clearCart() {
         Log.d("CartViewModel", "Clearing cart")
         _cartItems.value = emptyList()
-        //saveCartItemsToPrefs()
     }
 
-//    fun loadCartItemsFromPrefs() {
-//        val sharedPreferences: SharedPreferences = context!!.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-//        val json = sharedPreferences.getString(CART_ITEMS_KEY, null)
-//        val type = object : TypeToken<List<DishModel>>() {}.type
-//        val cartItems: List<DishModel> = Gson().fromJson(json, type) ?: emptyList()
-//        _cartItems.value = cartItems
-//    }
-//
-//    private fun saveCartItemsToPrefs() {
-//        val sharedPreferences: SharedPreferences = context!!.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-//        val editor: SharedPreferences.Editor = sharedPreferences.edit()
-//        val json = Gson().toJson(_cartItems.value)
-//        editor.putString(CART_ITEMS_KEY, json)
-//        editor.apply()
-//    }
+    fun loadCartItemsFromPrefs() {
+        val sharedPreferences: SharedPreferences = context!!.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val json = sharedPreferences.getString(CART_ITEMS_KEY, null)
+        val type = object : TypeToken<List<DishModel>>() {}.type
+        val cartItems: List<DishModel> = Gson().fromJson(json, type) ?: emptyList()
+        _cartItems.value = cartItems
+    }
+
+    fun saveCartItemsToPrefs() {
+        val sharedPreferences: SharedPreferences = context!!.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        val json = Gson().toJson(_cartItems.value)
+        editor.putString(CART_ITEMS_KEY, json)
+        editor.apply()
+    }
 
 }

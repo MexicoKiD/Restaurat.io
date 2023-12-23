@@ -16,6 +16,7 @@ import com.example.restauratio.R
 import com.example.restauratio.databinding.FragmentCartBinding
 import com.example.restauratio.databinding.FragmentEmptyCartBinding
 import com.example.restauratio.products.ProductDetailsViewModel
+import com.google.android.gms.dynamic.SupportFragmentWrapper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,9 +53,9 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (_bindingCart != null) {
+        cartViewModel.loadCartItemsFromPrefs()
 
-            //cartViewModel.loadCartItemsFromPrefs()
+        if (_bindingCart != null) {
 
             cartAdapter = CartAdapter(cartViewModel) { clickedDish ->
                 productDetailsViewModel.setSelectedDish(clickedDish)
@@ -73,6 +74,7 @@ class CartFragment : Fragment() {
 
             bindingCart.imageView38.setOnClickListener {
                 cartViewModel.clearCart()
+                cartViewModel.saveCartItemsToPrefs()
             }
 
             bindingCart.imageView4.setOnClickListener {

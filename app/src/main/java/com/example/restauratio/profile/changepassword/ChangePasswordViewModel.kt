@@ -16,7 +16,7 @@ class ChangePasswordViewModel @Inject constructor(
 ) : ViewModel() {
 
      suspend fun resetPassword(password: String, passwordAgain: String) {
-        val authToken = sessionManager.getAuthToken().value.orEmpty()
+        val authToken = "Bearer ${sessionManager.getAuthToken().value.orEmpty()}"
         val userEmail = sessionManager.getUserEmail()
 
         val resetPasswordRequest = ChangePasswordModel(

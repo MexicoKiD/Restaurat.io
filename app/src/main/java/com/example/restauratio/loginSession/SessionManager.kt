@@ -2,12 +2,10 @@ package com.example.restauratio.loginSession
 
 import android.app.Application
 import android.content.SharedPreferences
-import androidx.core.content.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
-import com.example.restauratio.profile.aboutme.UserDataModel
 import javax.inject.Inject
 
 
@@ -25,6 +23,8 @@ class SessionManager @Inject constructor(
 
     private val AUTH_TOKEN_KEY = "auth_token"
     private val EXPIRATION_TIME_KEY = "expiration_time"
+    private val LOGGED_IN_USER_ID_KEY = "logged_in_user_id"
+    private val USER_EMAIL = "user_email"
 
     fun saveAuthToken(token: String, expirationTime: Long) {
         sessionViewModel.setAuthToken(token, expirationTime)
@@ -59,32 +59,18 @@ class SessionManager @Inject constructor(
         clearAuthToken()
     }
 
+    fun saveUserEmail(email: String) {
+        sharedPreferences.edit().putString(USER_EMAIL, email).apply()
+    }
+
     fun getUserEmail(): String {
-        return sharedPreferences.getString("user_email", "") ?: ""
+        return sharedPreferences.getString(USER_EMAIL, "") ?: ""
+    }
+    fun saveLoggedInUserId(userId: Int) {
+        sharedPreferences.edit().putInt(LOGGED_IN_USER_ID_KEY, userId).apply()
     }
 
-    fun saveUserData(userDataModel: UserDataModel) {
-        sharedPreferences.edit {
-            putString("user_email", userDataModel.email)
-            putString("user_firstname", userDataModel.firstName)
-            putString("user_lastname", userDataModel.lastName)
-            putString("user_address", userDataModel.address)
-            putString("user_city", userDataModel.city)
-            putString("user_phone", userDataModel.phone)
-            putString("user_postalCode", userDataModel.postalCode)
-        }
-    }
-
-    fun getUserData(): UserDataModel {
-        return UserDataModel(
-            sharedPreferences.getString("user_address", "") ?: "",
-            sharedPreferences.getString("user_city", "") ?: "",
-            sharedPreferences.getString("user_email", "") ?: "",
-            sharedPreferences.getString("user_firstname", "") ?: "",
-            sharedPreferences.getString("user_lastname", "") ?: "",
-            sharedPreferences.getString("user_phone", "") ?: "",
-            sharedPreferences.getString("user_postalCode", "") ?: "",
-
-        )
+    fun getLoggedInUserId(): Int {
+        return sharedPreferences.getInt(LOGGED_IN_USER_ID_KEY, -1)
     }
 }

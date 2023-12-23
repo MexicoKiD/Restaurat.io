@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.restauratio.R
 import com.example.restauratio.databinding.FragmentRegistrationBinding
 import com.example.restauratio.loginSession.SessionManager
-import com.example.restauratio.profile.aboutme.UserDataModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -69,18 +68,6 @@ class RegistrationFragment : Fragment() {
                 phone,
                 {
                     findNavController().navigate(action)
-
-                    val userDataModel = UserDataModel(
-                        email = email,
-                        firstName = firstName,
-                        lastName = lastName,
-                        address = address,
-                        city = city,
-                        postalCode = postalCode,
-                        phone = phone
-                    )
-                    sessionManager.saveUserData(userDataModel)
-
                 }
             ) { showError() }
         }
