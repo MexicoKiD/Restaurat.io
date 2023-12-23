@@ -42,6 +42,9 @@ interface AuthService {
     ): UserDataModel
 
     @POST("/api/v1/users/update")
-    suspend fun updateUserData(@Body userData: UserDataModel)
+    suspend fun updateUserData(
+        @Header("Authorization") authToken: String,
+        @Body userData: UserDataModel
+    ): UserDataModel
 
 }

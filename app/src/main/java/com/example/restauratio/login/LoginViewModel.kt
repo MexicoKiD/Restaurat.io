@@ -66,26 +66,19 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun getUserIdFromToken(token: String): Int {
-        // Token JWT składa się z trzech części: header, payload i signature, rozdzielonych kropkami.
         val parts = token.split(".")
 
-        // Payload jest drugą częścią.
-        if (parts.size >= 2) {
+        return if (parts.size >= 2) {
             val payload = parts[1]
 
-            // Decode Base64 i przekształć na String.
             val decodedPayload = String(Base64.decode(payload, Base64.URL_SAFE), Charsets.UTF_8)
 
-            // Parsuj JSON.
             val jsonPayload = JSONObject(decodedPayload)
 
-            // Pobierz identyfikator użytkownika.
-            val userId = jsonPayload.getInt("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")
-            return userId
+            jsonPayload.getInt("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")
+
         } else {
-            // Jeśli token jest uszkodzony lub nie zawiera odpowiednich informacji, zwróć -1 lub inny kod błędu.
-            return -1
+            -1
         }
     }
-
 }

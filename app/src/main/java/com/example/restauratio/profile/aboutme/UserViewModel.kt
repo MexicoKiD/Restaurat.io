@@ -1,5 +1,6 @@
 package com.example.restauratio.profile.aboutme
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,10 +28,16 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    fun updateUserData(userData: UserDataModel) {
+    fun updateUserData(updatedUserData: UserDataModel) {
+        val authToken = "Bearer ${sessionManager.getAuthToken().value.orEmpty()}"
+
         viewModelScope.launch {
-            authService.updateUserData(userData)
-            _userData.postValue(userData)
+            try {
+                val updatedUser = authService.updateUserData(authToken, updatedUserData)
+                _userData.postValue(updatedUser)
+            } catch (e: Exception) {
+                Log.e("UpdateUserData", "Error updating user data", e)
+            }
         }
     }
 }

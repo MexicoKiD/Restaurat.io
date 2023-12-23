@@ -177,7 +177,7 @@
     </fragment>
     <fragment
         android:id="@+id/editDeliveryAddress"
-        android:name="com.example.restauratio.profile.aboutme.EditDeliveryAddress"
+        android:name="com.example.restauratio.profile.aboutme.editData.EditDeliveryAddress"
         android:label="fragment_edit_address"
         tools:layout="@layout/fragment_edit_address" >
         <action
