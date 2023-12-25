@@ -214,6 +214,9 @@
             android:id="@+id/action_cartFragment_pop"
             app:popUpTo="@id/cartFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_cartFragment_to_deliveryFragment"
+            app:destination="@id/deliveryFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
@@ -229,4 +232,9 @@
         android:id="@+id/action_global_productDetailFragment"
         app:destination="@id/productDetailFragment" />
     <action android:id="@+id/action_global_login" app:destination="@id/login" />
+    <fragment
+        android:id="@+id/deliveryFragment"
+        android:name="com.example.restauratio.delivery.DeliveryFragment"
+        android:label="fragment_delivery"
+        tools:layout="@layout/fragment_delivery" />
 </navigation>
