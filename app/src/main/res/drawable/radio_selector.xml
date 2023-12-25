@@ -5,6 +5,6 @@
         android:drawable="@drawable/green_frame" />
 
     <item android:state_checked="false"
-        android:drawable="@drawable/green_frame" />
+        android:drawable="@drawable/blue_frame" />
 
 </selector>

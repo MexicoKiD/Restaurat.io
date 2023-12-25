@@ -35,6 +35,7 @@ class CartFragment : Fragment() {
 
     private val actionCartToPop = R.id.action_cartFragment_pop
     private val actionCartToProductDetails = R.id.action_global_productDetailFragment
+    private val actionCartToDeliveryFragment = R.id.action_cartFragment_to_deliveryFragment
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -85,6 +86,10 @@ class CartFragment : Fragment() {
             bindingEmptyCart.imageView4.setOnClickListener {
                 findNavController().navigate(actionCartToPop)
             }
+        }
+
+        bindingCart.button4.setOnClickListener {
+            findNavController().navigate(actionCartToDeliveryFragment)
         }
     }
 

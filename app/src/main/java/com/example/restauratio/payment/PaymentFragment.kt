@@ -1,33 +1,35 @@
-package com.example.restauratio.delivery
+package com.example.restauratio.payment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.restauratio.R
-import com.example.restauratio.databinding.FragmentDeliveryBinding
+import com.example.restauratio.databinding.FragmentPaymentBinding
 
-class DeliveryFragment : Fragment() {
+class PaymentFragment : Fragment() {
 
-    private var _binding: FragmentDeliveryBinding? = null
+    private var _binding: FragmentPaymentBinding? = null
     private val binding get() = _binding!!
 
-    private val actionDeliveryToPayment = R.id.action_deliveryFragment_to_paymentFragment
-    private val actionDeliveryPop = R.id.action_deliveryFragment_pop
+    private val actionPaymentToSummary = R.id.action_paymentFragment_to_summaryFragment
+    private val actionPaymentPop = R.id.action_paymentFragment_pop
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDeliveryBinding.inflate(inflater, container, false)
+        _binding = FragmentPaymentBinding.inflate(inflater, container, false)
 
         binding.buttonSave.setOnClickListener {
-            findNavController().navigate(actionDeliveryToPayment)
+            findNavController().navigate(actionPaymentToSummary)
         }
+
         binding.imageView4.setOnClickListener {
-            findNavController().navigate(actionDeliveryPop)
+            findNavController().navigate(actionPaymentPop)
         }
 
         return binding.root
@@ -37,4 +39,5 @@ class DeliveryFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

@@ -26,7 +26,7 @@ class DialogPopup : DialogFragment() {
     private val binding get() = _binding!!
     private var message: String = ""
     private var confirmationMessage: String = ""
-    val action = R.id.action_global_login
+    private val action = R.id.action_global_login
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
