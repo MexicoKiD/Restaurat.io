@@ -1,4 +1,4 @@
-package com.example.restauratio.payment
+package com.example.restauratio.delivery.payment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.restauratio.R
 import com.example.restauratio.databinding.FragmentPaymentBinding
 

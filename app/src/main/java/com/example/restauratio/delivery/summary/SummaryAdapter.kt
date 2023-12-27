@@ -1,15 +1,16 @@
-package com.example.restauratio.summary
+package com.example.restauratio.delivery.summary
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.restauratio.databinding.SummaryItemBinding
 import com.example.restauratio.menu.DishModel
 import de.hdodenhof.circleimageview.CircleImageView
 
-class SummaryAdapter : RecyclerView.Adapter<SummaryAdapter.SummaryViewHolder>() {
+class SummaryAdapter(private val cartItemsLiveData: LiveData<List<DishModel>>) : RecyclerView.Adapter<SummaryAdapter.SummaryViewHolder>() {
 
     private var summaryItems: List<DishModel> = emptyList()
 
@@ -26,7 +27,7 @@ class SummaryAdapter : RecyclerView.Adapter<SummaryAdapter.SummaryViewHolder>() 
         return SummaryViewHolder(summaryItemBinding)
     }
 
-    override fun onBindViewHolder(holder: SummaryAdapter.SummaryViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SummaryViewHolder, position: Int) {
         val summaryItem = summaryItems[position]
 
         holder.dishName.text = summaryItem.name

@@ -82,14 +82,14 @@ class CartFragment : Fragment() {
                 findNavController().navigate(actionCartToPop)
             }
 
+            bindingCart.button4.setOnClickListener {
+                findNavController().navigate(actionCartToDeliveryFragment)
+            }
+
         } else {
             bindingEmptyCart.imageView4.setOnClickListener {
                 findNavController().navigate(actionCartToPop)
             }
-        }
-
-        bindingCart.button4.setOnClickListener {
-            findNavController().navigate(actionCartToDeliveryFragment)
         }
     }
 

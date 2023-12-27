@@ -99,7 +99,8 @@
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="@+id/textView33"
             app:layout_constraintStart_toEndOf="@+id/textView33"
-            app:layout_constraintTop_toTopOf="@+id/textView33" />
+            app:layout_constraintTop_toTopOf="@+id/textView33"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/textView60"
@@ -144,16 +145,6 @@
             android:text="TextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView41"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/textView62"
-            app:layout_constraintStart_toEndOf="@+id/textView62"
-            app:layout_constraintTop_toTopOf="@+id/textView62" />
 
         <TextView
             android:id="@+id/textView62"
@@ -270,8 +261,7 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView68"
-        tools:listitem="@layout/summary_item" />
+        app:layout_constraintTop_toBottomOf="@+id/textView68" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
