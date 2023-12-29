@@ -10,6 +10,7 @@ data class Order(
     val orderDetails: List<OrderDetail>,
     val statusId: Int,
     val type: Int,
+    val totalAmount: Double,
     val paymentType: Int,
     val deliveryType: Int
 )
@@ -28,5 +29,7 @@ data class ShippingInformation(
 
 data class OrderDetail(
     val dishId: Int,
-    val quantity: Int
+    val quantity: Int,
+    val dishName: String,
+    val id: Int,
 )

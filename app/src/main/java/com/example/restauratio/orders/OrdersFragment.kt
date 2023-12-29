@@ -42,7 +42,7 @@ class OrdersFragment : Fragment() {
             findNavController().navigate(actionOrderToPop)
         }
 
-        orderListViewModel.getOrderList(15)
+        orderListViewModel.getOrderList(11)
         var orderList: List<Order>
 
         orderListViewModel.orderListLiveData.observe(viewLifecycleOwner) { receivedOrderList ->
