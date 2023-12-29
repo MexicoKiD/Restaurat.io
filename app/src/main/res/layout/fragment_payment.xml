@@ -54,6 +54,7 @@
             android:id="@+id/radioButton3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/radio_selector"
             android:button="@android:color/transparent"
             android:drawableStart="@drawable/vector_1_"
@@ -61,6 +62,19 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:text="Karta przy odbiorze"
+            android:textColorHint="@color/text_color" />
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:drawableStart="@drawable/blik_seeklogo_com"
+            android:drawablePadding="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="BLIK"
             android:textColorHint="@color/text_color" />
     </RadioGroup>
 

@@ -2,10 +2,13 @@ package com.example.restauratio.delivery
 
 import android.content.SharedPreferences
 import android.util.Log
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.restauratio.delivery.summary.CreateOrderRequest
 import com.example.restauratio.loginSession.SessionManager
 import com.example.restauratio.profile.aboutme.UserDataModel
 import com.example.restauratio.request.AuthService
@@ -39,6 +42,26 @@ class DeliveryViewModel  @Inject constructor(
                 _userData.postValue(updatedUser)
             } catch (e: Exception) {
                 Log.e("UpdateUserData", "Error updating user data", e)
+            }
+        }
+    }
+
+    fun createOrder(request: CreateOrderRequest) {
+        viewModelScope.launch {
+            try {
+                val response = authService.createOrder(request)
+
+                when {
+                    response.isSuccessful -> {
+                        val orderResponse = response.body()
+                        Log.d("DeliveryViewModel", "$orderResponse")
+                    }
+                    else -> {
+                        Log.d("DeliveryViewModel", "$response")
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }

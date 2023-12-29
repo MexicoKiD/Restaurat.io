@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.map
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restauratio.R
 import com.example.restauratio.cart.CartViewModel
@@ -41,6 +43,10 @@ class SummaryFragment : Fragment() {
     ): View {
         _binding = FragmentSummaryBinding.inflate(inflater, container, false)
 
+        val args: SummaryFragmentArgs by navArgs()
+        val deliveryMethodId = args.deliveryMethod
+        val paymentMethodId = args.paymentMethod
+
         cartViewModel.loadCartItemsFromPrefs()
 
         summaryAdapter = SummaryAdapter(cartViewModel.cartItems)
@@ -66,11 +72,71 @@ class SummaryFragment : Fragment() {
             }
         }
 
+        if (deliveryMethodId == 3) {
+            binding.textView69.text = "Odbiór osobisty"
+            binding.textView40.visibility = View.GONE
+            binding.textView62.visibility = View.GONE
+            binding.textView63.visibility = View.GONE
+        } else binding.textView69.visibility = View.GONE
+
+        when (paymentMethodId) {
+            4 -> {
+                binding.textView42.text = "Gotówka"
+            }
+            5 -> {
+                binding.textView42.text = "Karta przy odbiorze"
+            }
+            6 -> {
+                binding.textView42.text = "BLIK"
+            }
+            else -> {
+                binding.textView42.text = "Nie wybrano metody płatności."
+            }
+        }
+
         binding.imageView4.setOnClickListener {
             findNavController().navigate(actionSummaryPop)
         }
 
         binding.buttonSave.setOnClickListener {
+
+            val shippingInformation = ShippingInformation(
+                loggedInUserId,
+                email,
+                binding.textView33.text.toString(),
+                binding.textView39.text.toString(),
+                binding.textView40.text.toString(),
+                binding.textView63.text.toString(),
+                binding.textView62.text.toString(),
+                "Polska",
+                binding.textView61.text.toString()
+            )
+
+            val orderDetails = cartViewModel.cartItems.value?.map {
+                OrderDetail(it.id, it.quantity)
+            } ?: emptyList()
+
+            val deliveryType = if (binding.textView69.text == "Odbiór osobisty") 3 else 2
+
+            val paymentType = when (binding.textView42.text) {
+                "Gotówka" -> 4
+                "Karta przy odbiorze" -> 5
+                "BLIK" -> 6
+                else -> 0
+            }
+
+            val description = "Zamówienie z aplikacji Restauratio"
+
+            val createOrderRequest = CreateOrderRequest(
+                shippingInformation,
+                orderDetails,
+                deliveryType,
+                paymentType,
+                description
+            )
+
+            deliveryViewModel.createOrder(createOrderRequest)
+
             findNavController().popBackStack(R.id.menu, true)
             findNavController().navigate(action)
         }

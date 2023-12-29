@@ -74,9 +74,23 @@ class DeliveryFragment : Fragment() {
 
             deliveryViewModel.updateUserData(updatedUserData)
 
-            findNavController().navigate(actionDeliveryToPayment)
+            val selectedDeliveryMethodId = if (binding.radioButton3.isChecked) {
+                3
+            } else {
+                2
+            }
+
+            val action = DeliveryFragmentDirections.actionDeliveryFragmentToPaymentFragment(deliveryMethod = selectedDeliveryMethodId)
+            findNavController().navigate(action)
         }
 
+        binding.radioGroup2.setOnCheckedChangeListener{ _, checkedId ->
+            if (checkedId == R.id.radioButton3) {
+                hideDeliveryFields()
+            }else {
+                showDeliveryFields()
+            }
+        }
     }
 
     private fun updateUI(user: UserDataModel) {
@@ -87,6 +101,20 @@ class DeliveryFragment : Fragment() {
         binding.cityEditText.setText(user.city)
         binding.postalCodeEditText.setText(user.postalCode)
         binding.phoneEditText.setText(user.phone)
+    }
+
+    private fun hideDeliveryFields() {
+        binding.textView65.visibility = View.GONE
+        binding.textInputLayout5.visibility = View.GONE
+        binding.textInputLayout6.visibility = View.GONE
+        binding.textInputLayout7.visibility = View.GONE
+    }
+
+    private fun showDeliveryFields() {
+        binding.textView65.visibility = View.VISIBLE
+        binding.textInputLayout5.visibility = View.VISIBLE
+        binding.textInputLayout6.visibility = View.VISIBLE
+        binding.textInputLayout7.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {

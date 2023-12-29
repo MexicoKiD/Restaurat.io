@@ -187,7 +187,7 @@
     </fragment>
     <fragment
         android:id="@+id/orders"
-        android:name="com.example.restauratio.orders.Orders"
+        android:name="com.example.restauratio.orders.OrdersFragment"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" >
         <action
@@ -264,6 +264,9 @@
             android:id="@+id/action_paymentFragment_pop"
             app:popUpTo="@id/paymentFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="deliveryMethod"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/summaryFragment"
@@ -274,5 +277,11 @@
             android:id="@+id/action_summaryFragment_pop"
             app:popUpTo="@id/summaryFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="deliveryMethod"
+            app:argType="integer" />
+        <argument
+            android:name="paymentMethod"
+            app:argType="integer"/>
     </fragment>
 </navigation>

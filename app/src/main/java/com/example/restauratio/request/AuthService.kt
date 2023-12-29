@@ -1,8 +1,11 @@
 package com.example.restauratio.request
+import com.example.restauratio.delivery.summary.CreateOrderRequest
 import com.example.restauratio.login.LoginModel
 import com.example.restauratio.login.LoginResponse
 import com.example.restauratio.menu.DishRequest
 import com.example.restauratio.menu.DishResponse
+import com.example.restauratio.orders.Order
+import com.example.restauratio.orders.OrderRequest
 import com.example.restauratio.profile.aboutme.UserDataModel
 import com.example.restauratio.profile.changepassword.ChangePasswordModel
 import com.example.restauratio.profile.changepassword.ChangePasswordResponse
@@ -46,5 +49,14 @@ interface AuthService {
         @Header("Authorization") authToken: String,
         @Body userData: UserDataModel
     ): UserDataModel
+
+    @POST("/api/v1/orders/list")
+    suspend fun getOrders(
+        @Header("Authorization") authToken: String,
+        @Body request: OrderRequest
+    ): List<Order>
+
+    @POST("/api/v1/orders/create")
+    suspend fun createOrder(@Body request: CreateOrderRequest): Response<Unit>
 
 }

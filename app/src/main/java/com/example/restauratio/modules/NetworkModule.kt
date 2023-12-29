@@ -1,6 +1,5 @@
 package com.example.restauratio.modules
 
-import com.example.restauratio.loginSession.SessionManager
 import com.example.restauratio.request.AuthService
 import dagger.Module
 import dagger.Provides

@@ -25,9 +25,24 @@ class PaymentFragment : Fragment() {
     ): View {
         _binding = FragmentPaymentBinding.inflate(inflater, container, false)
 
+        val args: PaymentFragmentArgs by navArgs()
+        val deliveryMethodId = args.deliveryMethod
+
         binding.buttonSave.setOnClickListener {
-            findNavController().navigate(actionPaymentToSummary)
-        }
+
+                val selectedPaymentMethodId = when {
+                    binding.radioButton2.isChecked -> 4
+                    binding.radioButton3.isChecked -> 5
+                    binding.radioButton.isChecked -> 6
+                    else -> -1
+                }
+
+                val action = PaymentFragmentDirections.actionPaymentFragmentToSummaryFragment(
+                    deliveryMethod = deliveryMethodId,
+                    paymentMethod = selectedPaymentMethodId
+                )
+                findNavController().navigate(action)
+            }
 
         binding.imageView4.setOnClickListener {
             findNavController().navigate(actionPaymentPop)
