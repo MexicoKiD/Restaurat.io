@@ -1,5 +1,8 @@
 package com.example.restauratio.request
 import com.example.restauratio.delivery.summary.CreateOrderRequest
+import com.example.restauratio.delivery.summary.OrderResponse
+import com.example.restauratio.delivery.summary.Payment
+import com.example.restauratio.delivery.summary.PaymentResponse
 import com.example.restauratio.login.LoginModel
 import com.example.restauratio.login.LoginResponse
 import com.example.restauratio.menu.DishRequest
@@ -57,6 +60,9 @@ interface AuthService {
     ): Response<List<Order>>
 
     @POST("/api/v1/orders/create")
-    suspend fun createOrder(@Body request: CreateOrderRequest): Response<Unit>
+    suspend fun createOrder(@Body request: CreateOrderRequest): Response<OrderResponse>
+
+    @POST("/api/v1/payments/create/{orderId}")
+    suspend fun createPayment(@Body request: Payment): Response<PaymentResponse>
 
 }

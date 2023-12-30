@@ -24,3 +24,17 @@ data class OrderDetail(
     val dishId: Int,
     val quantity: Int
 )
+
+data class OrderResponse(
+    val orderId: String
+)
+
+data class Payment(
+    val orderId: String
+)
+
+data class PaymentResponse(
+    val paymentId: String,
+    val redirectUrl: String,
+    val status: String
+)
