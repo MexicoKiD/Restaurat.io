@@ -43,11 +43,17 @@ class OrdersFragment : Fragment() {
         }
 
         orderListViewModel.getOrderList(11)
-        var orderList: List<Order>
+        orderListViewModel.getOrderList(12)
+        orderListViewModel.getOrderList(13)
+        orderListViewModel.getOrderList(14)
+        orderListViewModel.getOrderList(15)
+
+        val allOrdersList = mutableListOf<Order>()
 
         orderListViewModel.orderListLiveData.observe(viewLifecycleOwner) { receivedOrderList ->
-            orderList = receivedOrderList
-            ordersAdapter.submitList(orderList)
+            allOrdersList.addAll(receivedOrderList)
+            val sortedOrderList = allOrdersList.sortedByDescending { it.orderDate }
+            ordersAdapter.submitList(sortedOrderList)
         }
 
         return binding.root
