@@ -41,7 +41,6 @@ class MenuFragment : Fragment() {
     private lateinit var cartAdapter: CartAdapter
 
     private val actionMenuToAboutUs = R.id.action_menu_to_aboutUs
-    private val actionMenuToReservation = R.id.action_menu_to_reservationView
     private val actionMenuToRules = R.id.action_menu_to_rulesView
     private val actionMenuToPrivacyPolicy = R.id.action_menu_to_privacyPolicy
     private val actionLogout = R.id.action_menu_pop
@@ -87,9 +86,6 @@ class MenuFragment : Fragment() {
             when (menuItem.itemId) {
                 R.id.about_us -> {
                     findNavController().navigate(actionMenuToAboutUs)
-                }
-                R.id.reservation -> {
-                    findNavController().navigate(actionMenuToReservation)
                 }
                 R.id.rules -> {
                     findNavController().navigate(actionMenuToRules)

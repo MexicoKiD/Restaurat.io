@@ -9,11 +9,6 @@
             android:id="@+id/about_us"/>
     </group>
 
-    <group android:id="@+id/group_2">
-        <item android:title="@string/reservation_text"
-            android:id="@+id/reservation"/>
-    </group>
-
     <group android:id="@+id/group_3">
         <item android:title="@string/rules_text"
             android:id="@+id/rules" />

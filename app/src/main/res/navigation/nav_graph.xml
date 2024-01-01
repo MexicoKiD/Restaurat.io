@@ -36,9 +36,6 @@
             android:id="@+id/action_menu_to_privacyPolicy"
             app:destination="@id/privacyPolicy" />
         <action
-            android:id="@+id/action_menu_to_reservationView"
-            app:destination="@id/reservationView" />
-        <action
             android:id="@+id/action_menu_to_rulesView"
             app:destination="@id/rulesView" />
         <action
@@ -86,16 +83,6 @@
         <action
             android:id="@+id/action_rulesView_pop"
             app:popUpTo="@id/rulesView"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/reservationView"
-        android:name="com.example.restauratio.sidemenu.Reservation"
-        android:label="fragment_reservation"
-        tools:layout="@layout/fragment_reservation" >
-        <action
-            android:id="@+id/action_reservationView_pop"
-            app:popUpTo="@id/reservationView"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
