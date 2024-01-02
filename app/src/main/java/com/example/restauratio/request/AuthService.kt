@@ -63,5 +63,4 @@ interface AuthService {
 
     @POST("/api/v1/payments/create/{orderId}")
     suspend fun createPayment(@Path("orderId") orderId: String): Response<PaymentResponse>
-
 }

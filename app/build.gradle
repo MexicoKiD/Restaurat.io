@@ -42,6 +42,9 @@ android {
 
 dependencies {
 
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.8'
+
     //JWT Parser
     implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
     implementation 'io.jsonwebtoken:jjwt-impl:0.12.3'

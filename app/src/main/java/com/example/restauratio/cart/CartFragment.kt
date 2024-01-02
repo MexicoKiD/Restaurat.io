@@ -71,6 +71,10 @@ class CartFragment : Fragment() {
                 cartAdapter.setCartItems(cartItems)
                 val totalSum = cartItems.sumOf { it.price * it.quantity }
                 bindingCart.button4.text = "Zamów: ${String.format("%.2f zł", totalSum)}"
+
+                val dishImageUrls = cartItems.associateBy({ it.id }, { "https://restaurantiowe.blob.core.windows.net/dish/${it.id}.jpg" })
+                cartAdapter.setDishImageUrls(dishImageUrls)
+
             }
 
             bindingCart.imageView38.setOnClickListener {

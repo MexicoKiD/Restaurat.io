@@ -122,6 +122,9 @@ class MenuFragment : Fragment() {
 
         menuViewModel.dishes.observe(viewLifecycleOwner) { dishes ->
             dishAdapter.setDishes(dishes)
+
+            val dishImageUrls = dishes.associateBy({ it.id }, { "https://restaurantiowe.blob.core.windows.net/dish/${it.id}.jpg" })
+            dishAdapter.setDishImageUrls(dishImageUrls)
         }
         menuViewModel.loadDishes(categoryId = null, name = null)
 
