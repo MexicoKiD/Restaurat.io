@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.map
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -138,16 +135,33 @@ class SummaryFragment : Fragment() {
                 description
             )
 
-            deliveryViewModel.createOrder(createOrderRequest)
+            when (paymentType) {
+                6 -> {
+                    deliveryViewModel.createOrder(createOrderRequest)
 
-            deliveryViewModel.paymentResponse.observe(viewLifecycleOwner) { paymentResponse ->
-                val redirectUrl = paymentResponse.redirectUrl
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(redirectUrl))
-                startActivity(intent)
+                    deliveryViewModel.orderId.observe(viewLifecycleOwner) { orderId ->
+                        orderId?.let {
+                            deliveryViewModel.initiatePayment(orderId)
+                        }
+                    }
+
+                    deliveryViewModel.paymentResponse.observe(viewLifecycleOwner) { paymentResponse ->
+                        paymentResponse?.let {
+                            val redirectUrl = paymentResponse.redirectUrl
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(redirectUrl))
+                            startActivity(intent)
+
+                            findNavController().popBackStack(R.id.menu, true)
+                            findNavController().navigate(action)
+                        }
+                    }
+                }
+                else -> {
+                    deliveryViewModel.createOrder(createOrderRequest)
+                    findNavController().popBackStack(R.id.menu, true)
+                    findNavController().navigate(action)
+                }
             }
-
-            findNavController().popBackStack(R.id.menu, true)
-            findNavController().navigate(action)
         }
 
         return binding.root
@@ -163,12 +177,6 @@ class SummaryFragment : Fragment() {
         binding.textView61.text = user.phone
     }
 
-
-    private fun openPaymentPage(paymentLink: String) {
-        val builder = CustomTabsIntent.Builder()
-        val customTabsIntent = builder.build()
-        customTabsIntent.launchUrl(requireContext(), Uri.parse(paymentLink))
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

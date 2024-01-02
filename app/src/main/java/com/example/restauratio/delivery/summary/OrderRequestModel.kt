@@ -29,12 +29,8 @@ data class OrderResponse(
     val orderId: String
 )
 
-data class Payment(
-    val orderId: String
-)
-
 data class PaymentResponse(
-    val paymentId: String,
     val redirectUrl: String,
+    val paymentId: String,
     val status: String
 )

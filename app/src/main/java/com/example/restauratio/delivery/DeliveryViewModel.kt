@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.restauratio.delivery.summary.CreateOrderRequest
-import com.example.restauratio.delivery.summary.Payment
 import com.example.restauratio.delivery.summary.PaymentResponse
 import com.example.restauratio.loginSession.SessionManager
 import com.example.restauratio.profile.aboutme.UserDataModel
@@ -24,11 +23,11 @@ class DeliveryViewModel  @Inject constructor(
     private val _userData = MutableLiveData<UserDataModel>()
     val userData: LiveData<UserDataModel> get() = _userData
 
-    private val _paymentLink = MutableLiveData<String>()
-    val paymentLink: LiveData<String> get() = _paymentLink
-
     private val _orderId = MutableLiveData<String>()
     val orderId: LiveData<String> get() = _orderId
+
+    private val _paymentResponse = MutableLiveData<PaymentResponse>()
+    val paymentResponse: LiveData<PaymentResponse> get() = _paymentResponse
 
     fun fetchUserData(userId: Int) {
         val authToken = "Bearer ${sessionManager.getAuthToken().value.orEmpty()}"
@@ -62,8 +61,6 @@ class DeliveryViewModel  @Inject constructor(
                         val orderId = orderResponse?.orderId
                         _orderId.postValue(orderId!!)
 
-                        createPayment(orderId)
-
                         Log.d("DeliveryViewModel", "$orderResponse")
 
                     }
@@ -77,23 +74,17 @@ class DeliveryViewModel  @Inject constructor(
         }
     }
 
-
-    private val _paymentResponse = MutableLiveData<PaymentResponse>()
-    val paymentResponse: LiveData<PaymentResponse> get() = _paymentResponse
-
-    private fun createPayment(orderId: String) {
+    fun initiatePayment(orderId: String) {
         viewModelScope.launch {
             try {
-                val paymentResponse = authService.createPayment(Payment(orderId))
+                val response = authService.createPayment(orderId)
 
-                when {
-                    paymentResponse.isSuccessful -> {
-                        val response = paymentResponse.body()
-                        _paymentResponse.postValue(response!!)
-                    }
-                    else -> {
-                        Log.e("DeliveryViewModel", "Payment creation failed: ${paymentResponse.errorBody()}")
-                    }
+                if (response.isSuccessful) {
+                    val paymentResponse = response.body()
+                    _paymentResponse.postValue(paymentResponse!!)
+                    Log.d("DeliveryViewModel", "$response")
+                } else {
+                    Log.d("DeliveryViewModel", "$response")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
