@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "333883641377",
+    "project_id": "resaurat-io",
+    "storage_bucket": "resaurat-io.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333883641377:android:a0368ec1df9ac92b245d60",
+        "android_client_info": {
+          "package_name": "com.example.restauratio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADSSzpMg34c3hAub0f-lqNJ9vhO_ZPoQA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
