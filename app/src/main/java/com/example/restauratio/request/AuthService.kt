@@ -8,6 +8,7 @@ import com.example.restauratio.menu.DishRequest
 import com.example.restauratio.menu.DishResponse
 import com.example.restauratio.orders.Order
 import com.example.restauratio.orders.OrderListRequest
+import com.example.restauratio.passwordRemind.PasswordRemindModel
 import com.example.restauratio.profile.aboutme.UserDataModel
 import com.example.restauratio.profile.changepassword.ChangePasswordModel
 import com.example.restauratio.profile.changepassword.ChangePasswordResponse
@@ -15,6 +16,7 @@ import com.example.restauratio.register.RegisterModel
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
@@ -63,4 +65,13 @@ interface AuthService {
 
     @POST("/api/v1/payments/create/{orderId}")
     suspend fun createPayment(@Path("orderId") orderId: String): Response<PaymentResponse>
+
+    @POST("/api/v1/users/password/remind")
+    suspend fun passwordRemind(@Body passwordRemindRequest: PasswordRemindModel): Response<Void>
+
+    @DELETE("/api/v1/users/{id}")
+    suspend fun deleteUser(
+        @Header("Authorization") authToken: String,
+        @Path("id") userId: Int
+    ): Response<Void>
 }

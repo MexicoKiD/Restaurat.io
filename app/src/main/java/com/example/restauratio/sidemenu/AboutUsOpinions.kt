@@ -67,7 +67,7 @@ class AboutUsOpinions : Fragment() {
         webView.webViewClient = WebViewClient()
 
         webView.apply {
-            loadUrl("https://shorturl.at/mzP78")
+            loadUrl("https://www.google.com/search?client=firefox-b-d&q=supreme+d%C3%B6ner+kebab+pozna%C5%84+opinie")
             settings.javaScriptEnabled = true
             settings.safeBrowsingEnabled = true
         }

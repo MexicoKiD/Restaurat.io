@@ -8,12 +8,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.restauratio.R
 import com.example.restauratio.databinding.DialogPopupBinding
 import com.example.restauratio.login.LoginFragment
 import com.example.restauratio.loginSession.SessionManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -21,6 +26,8 @@ class DialogPopup : DialogFragment() {
 
     @Inject
     lateinit var sessionManager: SessionManager
+
+    private val deleteAccountViewModel: DeleteAccountViewModel by viewModels()
 
     private var _binding: DialogPopupBinding? = null
     private val binding get() = _binding!!
@@ -38,13 +45,17 @@ class DialogPopup : DialogFragment() {
         binding.message.text = message
 
         binding.btnYes.setOnClickListener{
-            if (message == "Czy na pewno chcesz usunąć konto?"){
-                //TODO dodać usuwanie konta
-                showToast(confirmationMessage)
-                sessionManager.logout()
-                findNavController().popBackStack(R.id.login, true)
-                findNavController().navigate(action)
-                dismiss()
+            if (message == "Czy na pewno chcesz usunąć konto?") {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    repeatOnLifecycle(Lifecycle.State.CREATED) {
+                        deleteAccountViewModel.deleteAccount(sessionManager.getLoggedInUserId())
+                        showToast(confirmationMessage)
+                        sessionManager.logout()
+                        findNavController().popBackStack(R.id.login, true)
+                        findNavController().navigate(action)
+                        dismiss()
+                    }
+                }
             } else {
                 showToast(confirmationMessage)
                 sessionManager.logout()

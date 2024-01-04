@@ -1,5 +1,6 @@
 package com.example.restauratio.cart
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -75,11 +76,19 @@ class CartFragment : Fragment() {
                 val dishImageUrls = cartItems.associateBy({ it.id }, { "https://restaurantiowe.blob.core.windows.net/dish/${it.id}.jpg" })
                 cartAdapter.setDishImageUrls(dishImageUrls)
 
+                val isCartNotEmpty = cartItems.isNotEmpty()
+                bindingCart.button4.isEnabled = isCartNotEmpty
+                bindingCart.button4.backgroundTintList = if (isCartNotEmpty) {
+                    ColorStateList.valueOf(resources.getColor(R.color.secondary_color, requireContext().theme))
+                } else {
+                    ColorStateList.valueOf(resources.getColor(R.color.secondary_color_light, requireContext().theme))
+                }
             }
 
             bindingCart.imageView38.setOnClickListener {
                 cartViewModel.clearCart()
                 cartViewModel.saveCartItemsToPrefs()
+                findNavController().navigate(actionCartToPop)
             }
 
             bindingCart.imageView4.setOnClickListener {

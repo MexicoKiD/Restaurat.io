@@ -69,6 +69,7 @@ class CartViewModel @Inject constructor(
     fun clearCart() {
         Log.d("CartViewModel", "Clearing cart")
         _cartItems.value = emptyList()
+        saveCartItemsToPrefs()
     }
 
     fun loadCartItemsFromPrefs() {

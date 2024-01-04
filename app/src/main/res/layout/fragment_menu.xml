@@ -49,10 +49,9 @@
                 android:id="@+id/textInputLayout3"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/layout_height_48"
-                android:layout_marginEnd="@dimen/fragment_horizontal_margin_16"
                 android:hint="@string/search_text"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView6"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -65,16 +64,6 @@
                     android:singleLine="true"
                     android:textColorHint="#546E7A" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="@dimen/layout_width_32"
-                android:layout_height="@dimen/layout_height_32"
-                android:contentDescription="@string/app_name"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/bell_1" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

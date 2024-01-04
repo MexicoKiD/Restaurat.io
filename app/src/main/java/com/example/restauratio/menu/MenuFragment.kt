@@ -44,7 +44,6 @@ class MenuFragment : Fragment() {
     private val actionMenuToRules = R.id.action_menu_to_rulesView
     private val actionMenuToPrivacyPolicy = R.id.action_menu_to_privacyPolicy
     private val actionLogout = R.id.action_menu_pop
-    private val actionMenuToAlerts = R.id.action_menu_to_alerts
     private val actionMenuToProfile = R.id.action_menu_to_profile
     private val actionMenuToOrders = R.id.action_menu_to_orders
     private val actionMenuToCart = R.id.action_menu_to_cartFragment
@@ -68,9 +67,6 @@ class MenuFragment : Fragment() {
 
         binding.hamburgerButton.setOnClickListener {
             onHamburgerButtonClick()
-        }
-        binding.imageView6.setOnClickListener{
-            findNavController().navigate(actionMenuToAlerts)
         }
         binding.imageView2.setOnClickListener{
             findNavController().navigate(actionMenuToProfile)
@@ -109,6 +105,8 @@ class MenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
 
         cartViewModel.loadCartItemsFromPrefs()
 

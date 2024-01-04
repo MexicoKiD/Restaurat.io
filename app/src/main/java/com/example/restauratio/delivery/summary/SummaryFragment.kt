@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -37,6 +39,13 @@ class SummaryFragment : Fragment() {
     private val actionSummaryPop = R.id.action_summaryFragment_pop
     private val action = R.id.action_global_menu
 
+    private val nonEmptyButtonColor by lazy {
+        ContextCompat.getColor(requireContext(), R.color.secondary_color)
+    }
+    private val emptyButtonColor by lazy {
+        ContextCompat.getColor(requireContext(), R.color.secondary_color_light)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,6 +55,7 @@ class SummaryFragment : Fragment() {
         val args: SummaryFragmentArgs by navArgs()
         val deliveryMethodId = args.deliveryMethod
         val paymentMethodId = args.paymentMethod
+        val description = args.description
 
         cartViewModel.loadCartItemsFromPrefs()
 
@@ -125,8 +135,6 @@ class SummaryFragment : Fragment() {
                 else -> 0
             }
 
-            val description = "Zamówienie z aplikacji Restauratio"
-
             val createOrderRequest = CreateOrderRequest(
                 shippingInformation,
                 orderDetails,
@@ -147,10 +155,11 @@ class SummaryFragment : Fragment() {
 
                     deliveryViewModel.paymentResponse.observe(viewLifecycleOwner) { paymentResponse ->
                         paymentResponse?.let {
+                            Toast.makeText(requireContext(), "Zamówienie utworzone, za chwilę zostaniesz przekierowany do płatności", Toast.LENGTH_LONG).show()
                             val redirectUrl = paymentResponse.redirectUrl
                             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(redirectUrl))
                             startActivity(intent)
-
+                            cartViewModel.clearCart()
                             findNavController().popBackStack(R.id.menu, true)
                             findNavController().navigate(action)
                         }
@@ -158,10 +167,20 @@ class SummaryFragment : Fragment() {
                 }
                 else -> {
                     deliveryViewModel.createOrder(createOrderRequest)
+                    cartViewModel.clearCart()
                     findNavController().popBackStack(R.id.menu, true)
                     findNavController().navigate(action)
+                    Toast.makeText(requireContext(), "Zamówienie utworzone, szczegóły wyślemy Ci na maila.", Toast.LENGTH_LONG).show()
                 }
             }
+        }
+
+        binding.checkBox.setOnCheckedChangeListener { _, isChecked ->
+            binding.buttonSave.isEnabled = isChecked
+            binding.buttonSave.setBackgroundColor(
+                if (isChecked) nonEmptyButtonColor
+                else emptyButtonColor
+            )
         }
 
         return binding.root

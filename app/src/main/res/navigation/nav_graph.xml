@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_login_to_menu"
             app:destination="@id/menu" />
+        <action
+            android:id="@+id/action_login_to_passwordRemindFragment"
+            app:destination="@id/passwordRemindFragment" />
     </fragment>
     <fragment
         android:id="@+id/registration"
@@ -45,9 +48,6 @@
         <action
             android:id="@+id/action_menu_to_aboutUs"
             app:destination="@id/aboutUs" />
-        <action
-            android:id="@+id/action_menu_to_alerts"
-            app:destination="@id/alerts" />
         <action
             android:id="@+id/action_menu_to_profile"
             app:destination="@id/profile" />
@@ -124,15 +124,6 @@
             app:popUpTo="@id/aboutUsOpinions"
             app:popUpToInclusive="true"
             app:destination="@id/aboutUs" />
-    </fragment>
-    <fragment
-        android:id="@+id/alerts"
-        android:name="com.example.restauratio.alerts.Alerts"
-        android:label="Alerts" >
-        <action
-            android:id="@+id/action_alerts_pop"
-            app:popUpTo="@id/alerts"
-            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/profile"
@@ -254,6 +245,9 @@
         <argument
             android:name="deliveryMethod"
             app:argType="integer" />
+        <argument
+            android:name="description"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/summaryFragment"
@@ -270,5 +264,18 @@
         <argument
             android:name="paymentMethod"
             app:argType="integer"/>
+        <argument
+            android:name="description"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordRemindFragment"
+        android:name="com.example.restauratio.passwordRemind.PasswordRemindFragment"
+        android:label="fragment_password_remind"
+        tools:layout="@layout/fragment_password_remind" >
+        <action
+            android:id="@+id/action_passwordRemindFragment_pop"
+            app:popUpTo="@id/passwordRemindFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

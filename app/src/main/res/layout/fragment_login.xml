@@ -84,7 +84,7 @@
         android:layout_marginStart="@dimen/fragment_horizontal_margin_32"
         android:layout_marginTop="@dimen/fragment_vertical_margin_32"
         android:layout_marginEnd="@dimen/fragment_horizontal_margin_32"
-        android:backgroundTint="@color/secondary_color_light"
+        android:backgroundTint="@color/secondary_color"
         android:fontFamily="@font/inter"
         android:text="@string/login_button_text"
         android:textSize="@dimen/text_size"

@@ -27,6 +27,7 @@ class PaymentFragment : Fragment() {
 
         val args: PaymentFragmentArgs by navArgs()
         val deliveryMethodId = args.deliveryMethod
+        val description = args.description
 
         binding.buttonSave.setOnClickListener {
 
@@ -39,7 +40,8 @@ class PaymentFragment : Fragment() {
 
                 val action = PaymentFragmentDirections.actionPaymentFragmentToSummaryFragment(
                     deliveryMethod = deliveryMethodId,
-                    paymentMethod = selectedPaymentMethodId
+                    paymentMethod = selectedPaymentMethodId,
+                    description = description
                 )
                 findNavController().navigate(action)
             }
