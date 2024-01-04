@@ -54,7 +54,7 @@ class Profile : Fragment() {
         }
 
         binding.imageView31.setOnClickListener{
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://shorturl.at/ahE67")))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://shorturl.at/vxzJ4")))
         }
 
         return binding.root
